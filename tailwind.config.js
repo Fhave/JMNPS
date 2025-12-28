@@ -1,3 +1,6 @@
+import forms from "@tailwindcss/forms";
+import typography from "@tailwindcss/typography";
+
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: "class",
@@ -23,10 +26,11 @@ export default {
         display: ["Poppins", "sans-serif"],
       },
       borderRadius: {
+        DEFAULT: "0.5rem",
         lg: "1rem",
         xl: "1.5rem",
       },
     },
   },
-  plugins: ["@tailwindcss/forms", "@tailwindcss/typography"],
+  plugins: [forms, typography],
 };
