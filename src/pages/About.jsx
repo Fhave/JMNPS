@@ -1,28 +1,10 @@
 import { School, Users, Library, Brain, Lightbulb, UserCheck, Flower, Users as Community, PartyPopper } from "lucide-react";
+import Navbar from "../components/Navbar"; // added
 
 export default function About() {
   return (
     <div className="container mx-auto px-6 py-4 font-display bg-background-light text-text-light dark:bg-background-dark dark:text-text-dark">
-
-      {/* Header */}
-      <header className="flex justify-between items-center py-4">
-        <div className="flex items-center space-x-2">
-          <div className="bg-primary p-2 rounded-md">
-            <School className="text-text-light dark:text-zinc-900 w-6 h-6" />
-          </div>
-          <span className="font-bold text-xl text-text-light dark:text-text-dark">[School Name]</span>
-        </div>
-        <nav className="hidden md:flex items-center space-x-8">
-          <a className="hover:text-primary transition-colors" href="/">Home</a>
-          <a className="text-primary font-semibold" href="/about">About</a>
-          <a className="hover:text-primary transition-colors" href="/academics">Academics</a>
-          <a className="hover:text-primary transition-colors" href="/admissions">Admissions</a>
-          <a className="hover:text-primary transition-colors" href="/calendar">Calendar</a>
-          <a className="hover:text-primary transition-colors" href="/news">News & Updates</a>
-          <a className="hover:text-primary transition-colors" href="/contact">Contact</a>
-        </nav>
-      </header>
-
+      <Navbar />
       <main className="py-16 md:py-24">
 
         {/* About Intro */}

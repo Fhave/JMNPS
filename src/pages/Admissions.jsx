@@ -5,6 +5,7 @@ import {
   Handshake,
   Calendar
 } from "lucide-react";
+import Navbar from "../components/Navbar";
 
 export default function Admissions() {
   const steps = [
@@ -33,24 +34,7 @@ export default function Admissions() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 font-display bg-background-light text-text-light dark:bg-background-dark dark:text-text-dark">
-
-      {/* Header */}
-      <header className="py-6 flex justify-between items-center">
-        <div className="flex items-center space-x-3">
-          <div className="bg-primary p-2 rounded-lg">
-            <School className="w-7 h-7 text-navy-DEFAULT" />
-          </div>
-        </div>
-        <nav className="hidden md:flex space-x-8">
-          <a className="hover:text-primary transition-colors" href="/">Home</a>
-          <a className="hover:text-primary transition-colors" href="/about">About</a>
-          <a className="hover:text-primary transition-colors" href="/academics">Academics</a>
-          <a className="text-primary font-semibold" href="/admissions">Admissions</a>
-          <a className="hover:text-primary transition-colors" href="/calendar">Calendar</a>
-          <a className="hover:text-primary transition-colors" href="/news">News & Updates</a>
-          <a className="hover:text-primary transition-colors" href="/contact">Contact</a>
-        </nav>
-      </header>
+      <Navbar />
 
       <main className="py-16 md:py-24">
 

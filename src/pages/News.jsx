@@ -1,5 +1,6 @@
 import React from "react";
 import { Menu } from "lucide-react";
+import Navbar from "../components/Navbar";
 
 const newsArticles = [
   {
@@ -28,60 +29,7 @@ const newsArticles = [
 export default function News() {
   return (
     <div className="bg-background-light dark:bg-background-dark min-h-screen text-text-light dark:text-text-dark font-display">
-      {/* Header */}
-      <header className="py-6 px-4 sm:px-6 lg:px-8">
-        <nav className="flex justify-between items-center">
-          <div className="flex items-center space-x-3">
-            <div className="bg-primary-dark p-2 rounded-lg">
-              <svg
-                className="w-8 h-8 text-primary"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  d="M12 2L2 7V17C2 17.5523 2.44772 18 3 18H21C21.5523 18 22 17.5523 22 17V7L12 2Z"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                />
-                <path
-                  d="M7 13L12 16L17 13"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                />
-                <path
-                  d="M12 22V18"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                />
-              </svg>
-            </div>
-            <span className="font-bold text-xl text-primary-dark dark:text-text-dark">
-              [School Name]
-            </span>
-          </div>
-          <div className="hidden md:flex items-center space-x-8">
-            {["Home", "About", "Academics", "Admissions", "Calendar", "Contact"].map((link) => (
-              <a
-                key={link}
-                className="text-text-secondary-light dark:text-text-secondary-dark hover:text-primary-dark dark:hover:text-primary transition-colors"
-                href="#"
-              >
-                {link}
-              </a>
-            ))}
-            <a className="text-primary-dark dark:text-primary font-semibold" href="#">
-              News & Updates
-            </a>
-          </div>
-          <button className="md:hidden text-primary-dark dark:text-text-dark">
-            <Menu />
-          </button>
-        </nav>
-      </header>
+      <Navbar />
 
       {/* Main */}
       <main className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-16">

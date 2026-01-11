@@ -1,44 +1,12 @@
 import { Link } from "react-router-dom";
 import { School, Users, Library, Menu } from "lucide-react";
+import Navbar from "../components/Navbar"; // added
 
 export default function Home() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 font-display bg-background-light text-text-light">
-
-      {/* Navbar */}
-      <header className="flex justify-between items-center py-6">
-        <div className="flex items-center space-x-3">
-          <div className="bg-brand-light p-2.5 rounded-lg">
-            <School className="h-6 w-6 text-primary" />
-          </div>
-        </div>
-
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex space-x-8">
-          {[
-            ["Home", "/"],
-            ["About", "/about"],
-            ["Academics", "/academics"],
-            ["Admissions", "/admissions"],
-            ["Calendar", "/calendar"],
-            ["News & Updates", "/news"],
-            ["Contact", "/contact"],
-          ].map(([label, to]) => (
-            <Link
-              key={label}
-              to={to}
-              className="text-brand-light font-medium hover:text-primary transition-colors"
-            >
-              {label}
-            </Link>
-          ))}
-        </nav>
-
-        {/* Mobile Menu */}
-        <button className="md:hidden p-2 rounded-md text-brand-light hover:bg-subtle-light">
-          <Menu className="w-6 h-6" />
-        </button>
-      </header>
+      {/* use shared navbar */}
+      <Navbar />
 
       {/* Hero Section */}
       <main>

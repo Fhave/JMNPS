@@ -7,30 +7,12 @@ import {
   Microscope,
   CheckCircle
 } from "lucide-react";
+import Navbar from "../components/Navbar"; // added
 
 export default function Academics() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 font-display bg-background-light text-text-light dark:bg-background-dark dark:text-text-dark">
-
-      {/* Header */}
-      <header className="py-6 flex justify-between items-center border-b border-gray-200 dark:border-gray-700">
-        <div className="flex items-center space-x-3">
-          <div className="bg-primary p-2 rounded-lg">
-            <GraduationCap className="w-6 h-6 text-brand-dark" />
-          </div>
-          <span className="text-xl font-bold text-heading-light dark:text-heading-dark">[School Name]</span>
-        </div>
-        <nav className="hidden md:flex items-center space-x-8 text-sm font-medium text-heading-light dark:text-gray-300">
-          <a className="hover:text-primary transition-colors" href="/">Home</a>
-          <a className="hover:text-primary transition-colors" href="/about">About</a>
-          <a className="text-primary font-semibold" href="/academics">Academics</a>
-          <a className="hover:text-primary transition-colors" href="/admissions">Admissions</a>
-          <a className="hover:text-primary transition-colors" href="/calendar">Calendar</a>
-          <a className="hover:text-primary transition-colors" href="/news">News & Updates</a>
-          <a className="hover:text-primary transition-colors" href="/contact">Contact</a>
-        </nav>
-      </header>
-
+      <Navbar />
       <main className="py-16 sm:py-24">
 
         {/* Academic Programs Intro */}

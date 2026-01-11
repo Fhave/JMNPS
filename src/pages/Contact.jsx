@@ -1,44 +1,11 @@
 import React from "react";
 import { Menu, Mail, Phone } from "lucide-react";
+import Navbar from "../components/Navbar"; // added
 
 export default function ContactUsPage() {
   return (
     <div className="bg-background-light dark:bg-background-dark min-h-screen text-text-light-primary dark:text-text-dark-primary font-display">
-      {/* Header */}
-      <header className="flex justify-between items-center px-6 py-4 container mx-auto">
-        <div className="flex items-center gap-3">
-          <div className="bg-brand-purple p-2 rounded-lg">
-            <svg
-              className="w-8 h-8 text-primary"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M12 2L3 7V17L12 22L21 17V7L12 2ZM12 4.145L18.42 8L12 11.855L5.58 8L12 4.145ZM4 8.78V16.22L11 20.36V12.64L4 8.78Z" />
-            </svg>
-          </div>
-        </div>
-        <nav className="hidden md:flex items-center space-x-8 text-sm font-medium text-text-light-secondary dark:text-text-dark-secondary">
-          {["Home", "About", "Academics", "Admissions", "Calendar", "News & Updates"].map(
-            (link) => (
-              <a
-                key={link}
-                href="#"
-                className="hover:text-brand-purple dark:hover:text-primary transition-colors"
-              >
-                {link}
-              </a>
-            )
-          )}
-          <a href="#" className="text-brand-purple dark:text-primary font-semibold">
-            Contact
-          </a>
-        </nav>
-        <button className="md:hidden">
-          <Menu className="text-text-light-primary dark:text-text-dark-primary" />
-        </button>
-      </header>
-
+      <Navbar />
       {/* Main */}
       <main className="py-16 sm:py-24 px-6 container mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12">
         {/* Left Column */}
