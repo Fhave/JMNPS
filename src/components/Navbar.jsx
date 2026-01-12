@@ -17,13 +17,13 @@ export default function Navbar() {
   const location = useLocation();
 
   return (
-    <header className="sticky top-0 z-50 bg-background-light dark:bg-background-dark border-b border-border-light dark:border-border-dark">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <header className="sticky top-0 z-50 border-b border-border-light bg-background-light dark:border-border-dark dark:bg-background-dark">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3">
-          <div className="bg-primary/10 dark:bg-primary/20 p-2 rounded-lg">
+          <div className="rounded-lg bg-primary/10 p-2 dark:bg-primary/20">
             <svg
-              className="w-7 h-7 text-primary"
+              className="h-7 w-7 text-primary"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -36,13 +36,13 @@ export default function Navbar() {
               />
             </svg>
           </div>
-          <span className="font-bold text-lg text-primary-dark dark:text-text-dark">
+          <span className="text-primary-dark text-lg font-bold dark:text-text-dark">
             [School Name]
           </span>
         </Link>
 
         {/* Desktop navigation */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden items-center gap-8 md:flex">
           {links.map(([label, to]) => {
             const active = location.pathname === to;
 
@@ -50,13 +50,11 @@ export default function Navbar() {
               <Link
                 key={label}
                 to={to}
-                className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors
-                  ${
-                    active
-                      ? "bg-primary/10 text-primary-dark dark:text-primary"
-                      : "text-secondary-text-light dark:text-secondary-text-dark hover:text-primary-dark dark:hover:text-primary"
-                  }
-                `}
+                className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
+                  active
+                    ? "text-primary-dark bg-primary/10 dark:text-primary"
+                    : "hover:text-primary-dark text-secondary-text-light dark:text-secondary-text-dark dark:hover:text-primary"
+                } `}
               >
                 {label}
               </Link>
@@ -67,10 +65,10 @@ export default function Navbar() {
         {/* Mobile menu button */}
         <button
           onClick={() => setOpen(true)}
-          className="md:hidden p-2 rounded-md text-primary-dark dark:text-text-dark"
+          className="text-primary-dark rounded-md p-2 md:hidden dark:text-text-dark"
           aria-label="Open menu"
         >
-          <Menu className="w-6 h-6" />
+          <Menu className="h-6 w-6" />
         </button>
       </div>
 
@@ -84,26 +82,22 @@ export default function Navbar() {
 
       {/* Slide-in drawer */}
       <aside
-        className={`fixed top-0 right-0 h-full w-72 bg-background-light dark:bg-background-dark
-        border-l border-border-light dark:border-border-dark
-        transform transition-transform duration-300 ease-in-out
-        ${open ? "translate-x-0" : "translate-x-full"}
-        md:hidden z-50`}
+        className={`fixed top-0 right-0 h-full w-72 transform border-l border-border-light bg-background-light transition-transform duration-300 ease-in-out dark:border-border-dark dark:bg-background-dark ${open ? "translate-x-0" : "translate-x-full"} z-50 md:hidden`}
       >
-        <div className="flex items-center justify-between px-4 h-16 border-b border-border-light dark:border-border-dark">
-          <span className="font-semibold text-primary-dark dark:text-text-dark">
+        <div className="flex h-16 items-center justify-between border-b border-border-light px-4 dark:border-border-dark">
+          <span className="text-primary-dark font-semibold dark:text-text-dark">
             Menu
           </span>
           <button
             onClick={() => setOpen(false)}
             aria-label="Close menu"
-            className="p-2 rounded-md"
+            className="rounded-md p-2"
           >
-            <X className="w-6 h-6" />
+            <X className="h-6 w-6" />
           </button>
         </div>
 
-        <nav className="px-4 py-6 space-y-2">
+        <nav className="space-y-2 px-4 py-6">
           {links.map(([label, to]) => {
             const active = location.pathname === to;
 
@@ -112,13 +106,11 @@ export default function Navbar() {
                 key={label}
                 to={to}
                 onClick={() => setOpen(false)}
-                className={`block rounded-md px-3 py-2 text-sm font-medium transition-colors
-                  ${
-                    active
-                      ? "bg-primary/10 text-primary-dark dark:text-primary"
-                      : "text-text-light dark:text-text-dark hover:bg-subtle-light dark:hover:bg-subtle-dark"
-                  }
-                `}
+                className={`block rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+                  active
+                    ? "text-primary-dark bg-primary/10 dark:text-primary"
+                    : "text-text-light hover:bg-subtle-light dark:text-text-dark dark:hover:bg-subtle-dark"
+                } `}
               >
                 {label}
               </Link>

@@ -28,23 +28,24 @@ const newsArticles = [
 
 export default function News() {
   return (
-    <div className="bg-background-light dark:bg-background-dark min-h-screen text-text-light dark:text-text-dark font-display">
+    <div className="min-h-screen bg-background-light font-display text-text-light dark:bg-background-dark dark:text-text-dark">
       <Navbar />
 
       {/* Main */}
-      <main className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-16">
+      <main className="mx-auto grid max-w-7xl grid-cols-1 gap-16 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-3 lg:px-8">
         {/* Left Column */}
         <div className="lg:col-span-2">
-          <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-6xl font-bold text-primary-dark dark:text-text-dark tracking-tight">
+          <div className="mb-16 text-center">
+            <h1 className="text-primary-dark text-4xl font-bold tracking-tight md:text-6xl dark:text-text-dark">
               News & Updates
             </h1>
-            <p className="mt-4 text-lg md:text-xl text-text-secondary-light dark:text-text-secondary-dark max-w-2xl mx-auto">
-              Stay informed with the latest happenings, stories, and announcements from our school community.
+            <p className="text-text-secondary-light dark:text-text-secondary-dark mx-auto mt-4 max-w-2xl text-lg md:text-xl">
+              Stay informed with the latest happenings, stories, and
+              announcements from our school community.
             </p>
           </div>
 
-          <h2 className="text-3xl font-bold text-primary-dark dark:text-text-dark mb-8">
+          <h2 className="text-primary-dark mb-8 text-3xl font-bold dark:text-text-dark">
             Recent News
           </h2>
 
@@ -52,27 +53,27 @@ export default function News() {
             {newsArticles.map((article, idx) => (
               <article
                 key={idx}
-                className="flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-6"
+                className="flex flex-col items-start space-y-4 sm:flex-row sm:space-y-0 sm:space-x-6"
               >
                 <div className="w-full sm:w-1/3">
                   <img
                     src={article.img}
                     alt={article.title}
-                    className="rounded-lg object-cover w-full h-48"
+                    className="h-48 w-full rounded-lg object-cover"
                   />
                 </div>
                 <div className="w-full sm:w-2/3">
-                  <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark mb-1">
+                  <p className="text-text-secondary-light dark:text-text-secondary-dark mb-1 text-sm">
                     {article.date}
                   </p>
-                  <h3 className="text-2xl font-semibold text-primary-dark dark:text-white mb-2">
+                  <h3 className="text-primary-dark mb-2 text-2xl font-semibold dark:text-white">
                     {article.title}
                   </h3>
                   <p className="text-text-secondary-light dark:text-text-secondary-dark mb-4">
                     {article.description}
                   </p>
                   <a
-                    className="font-semibold text-primary-dark dark:text-primary hover:underline"
+                    className="text-primary-dark font-semibold hover:underline dark:text-primary"
                     href="#"
                   >
                     Read More →
@@ -88,10 +89,10 @@ export default function News() {
               {["Previous", "1", "2", "3", "Next"].map((page, idx) => (
                 <a
                   key={idx}
-                  className={`px-4 py-2 rounded-md ${
+                  className={`rounded-md px-4 py-2 ${
                     page === "1"
                       ? "bg-primary-dark text-white"
-                      : "bg-background-light dark:bg-card-dark text-text-secondary-light dark:text-text-secondary-dark hover:bg-gray-100 dark:hover:bg-gray-600"
+                      : "dark:bg-card-dark text-text-secondary-light dark:text-text-secondary-dark bg-background-light hover:bg-gray-100 dark:hover:bg-gray-600"
                   }`}
                   href="#"
                 >
@@ -104,12 +105,13 @@ export default function News() {
 
         {/* Sidebar */}
         <aside>
-          <div className="bg-card-light dark:bg-card-dark p-8 rounded-lg shadow-lg sticky top-8 border border-border-light dark:border-border-dark">
-            <h3 className="text-2xl font-bold text-primary-dark dark:text-white mb-2">
+          <div className="bg-card-light dark:bg-card-dark sticky top-8 rounded-lg border border-border-light p-8 shadow-lg dark:border-border-dark">
+            <h3 className="text-primary-dark mb-2 text-2xl font-bold dark:text-white">
               Newsletter Sign-Up
             </h3>
             <p className="text-text-secondary-light dark:text-text-secondary-dark mb-6">
-              Stay up-to-date with our latest news and events delivered right to your inbox.
+              Stay up-to-date with our latest news and events delivered right to
+              your inbox.
             </p>
             <form className="space-y-4">
               <div>
@@ -120,7 +122,7 @@ export default function News() {
                   type="text"
                   id="name"
                   placeholder="Your Name"
-                  className="w-full rounded-md border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark focus:ring-primary focus:border-primary text-text-light dark:text-text-dark"
+                  className="w-full rounded-md border-border-light bg-background-light text-text-light focus:border-primary focus:ring-primary dark:border-border-dark dark:bg-background-dark dark:text-text-dark"
                 />
               </div>
               <div>
@@ -131,12 +133,12 @@ export default function News() {
                   type="email"
                   id="email"
                   placeholder="Your Email Address"
-                  className="w-full rounded-md border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark focus:ring-primary focus:border-primary text-text-light dark:text-text-dark"
+                  className="w-full rounded-md border-border-light bg-background-light text-text-light focus:border-primary focus:ring-primary dark:border-border-dark dark:bg-background-dark dark:text-text-dark"
                 />
               </div>
               <button
                 type="submit"
-                className="w-full bg-primary text-primary-dark font-bold py-3 px-4 rounded-md hover:opacity-90 transition-opacity"
+                className="text-primary-dark w-full rounded-md bg-primary px-4 py-3 font-bold transition-opacity hover:opacity-90"
               >
                 Subscribe
               </button>
@@ -146,4 +148,4 @@ export default function News() {
       </main>
     </div>
   );
-};
+}
