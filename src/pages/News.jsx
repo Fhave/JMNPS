@@ -1,151 +1,251 @@
-import React from "react";
-import { Menu } from "lucide-react";
-import Navbar from "../components/Navbar";
+import React, { useState } from "react";
+import {
+  Calendar,
+  User,
+  ArrowRight,
+  Filter,
+  Search,
+  Share2,
+  Bookmark,
+  Bell,
+  TrendingUp,
+  Newspaper,
+} from "lucide-react";
 
-const newsArticles = [
-  {
-    date: "February 2, 2024",
-    title: "New Outdoor Playground Opens!",
-    description:
-      "Our newly renovated outdoor playground is now open for all students. The new equipment promotes physical activity, creativity, and collaborative play.",
-    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDOphRmXNQLRZFvvPz17JWjj6kh9QQf1yGqWW1MteSy0tXmo_O3ZlnmY_R7Suz269sSHh2qtS6aXA8fNcj4FxiHLNtKqeCzwxAZZ-dRTKB48aKx0b_hWaB5eOvuIxg34QXxUjord1ua32JiHCj8mBeX99EyxpVhHF3BbV8sB49to8s2Ks1SEq_cqI5Pxkx_GhgQP5LTl3j7cqTOECSXhCwu1rE_DVXceuV75bSKXpU5FY2bTJhZPu3WxWstto4Rz6f6d7Xp5j_uHP04",
-  },
-  {
-    date: "January 15, 2024",
-    title: "Celebrating Academic Achievements",
-    description:
-      "We are proud to announce the outstanding academic achievements of our students in the recent inter-school competitions. Congratulations to all participants!",
-    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuABp8PHnxNfysnk5Gjs0uICLB3raypU9ZPPdhAKMCAaGVzmIVXJ9evvphzL56vcoesVrQ7KNj_qo-cVwXgRfipuHtkYPvz9Ii1ayom7i244AkjLpAAZnsFecYWul2ao9d3itRIClEMILxZeFAfteQK4nXqoEG0vJ8wxdRIyM04SfLGpm7moy2ud1SgWun2TgDnyS2PUkBQprVzFkPVoUX5QqoHDkPA1g8MQQULIfwHUJaBC46wXdSWIdQk42hxY277WNOZmFSKdtInT",
-  },
-  {
-    date: "December 20, 2023",
-    title: "Recap: Annual School Day 2023",
-    description:
-      "Our Annual School Day was a grand success, filled with wonderful performances, awards, and community spirit. A big thank you to all who participated.",
-    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuD2usqsKjNc4DhUOf2_PYh9hHo-YDqemJyg2UGv2ICTS-1so4ahl-m1StXLkAfRu9BPSkZ3jt6m-_yX0uMD4FhTup4S34O6ibjLKekM5SU-7swKq6xRCMeM3cMqycs9LGZDNcMghbL3FgvZvtmWQMkcuExpMck3gXqKqA_8SVe_EK4w_OrfO1pEAF-bgHtzbwf_BqsLTWiriSPfApLNxG5YnJu-9WoM7n3WWmBGxSfoeXkX9T3GEueMNvzGXIs7zpb2ay4DqYaZqBCr",
-  },
-];
+const CategoryBadge = ({ children, active, onClick }) => (
+  <button
+    onClick={onClick}
+    className={`rounded-full border px-6 py-2 text-sm font-bold whitespace-nowrap transition-all ${
+      active
+        ? "border-[#7c3aed] bg-[#7c3aed] text-white shadow-lg shadow-purple-200"
+        : "border-gray-100 bg-white text-gray-500 hover:border-purple-200"
+    }`}
+  >
+    {children}
+  </button>
+);
 
-export default function News() {
-  return (
-    <div className="min-h-screen bg-background-light font-display text-text-light dark:bg-background-dark dark:text-text-dark">
-      <Navbar />
+const NewsCard = ({
+  category,
+  date,
+  title,
+  author,
+  image,
+  featured = false,
+}) => (
+  <article
+    className={`group cursor-pointer ${featured ? "lg:col-span-2" : ""}`}
+  >
+    <div
+      className={`overflow-hidden rounded-[2.5rem] border border-gray-100 bg-white transition-all duration-500 hover:shadow-2xl ${
+        featured ? "flex h-full flex-col lg:flex-row" : ""
+      }`}
+    >
+      <div
+        className={`relative overflow-hidden ${
+          featured ? "h-64 lg:h-auto lg:w-1/2" : "h-64"
+        }`}
+      >
+        <img
+          src={image}
+          alt={title}
+          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+        <div className="absolute top-4 left-4 rounded-full bg-white/90 px-4 py-1.5 text-[10px] font-black tracking-widest text-[#ec4899] uppercase backdrop-blur-md">
+          {category}
+        </div>
+      </div>
 
-      {/* Main */}
-      <main className="mx-auto grid max-w-7xl grid-cols-1 gap-16 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-3 lg:px-8">
-        {/* Left Column */}
-        <div className="lg:col-span-2">
-          <div className="mb-16 text-center">
-            <h1 className="text-primary-dark text-4xl font-bold tracking-tight md:text-6xl dark:text-text-dark">
-              News & Updates
-            </h1>
-            <p className="text-text-secondary-light dark:text-text-secondary-dark mx-auto mt-4 max-w-2xl text-lg md:text-xl">
-              Stay informed with the latest happenings, stories, and
-              announcements from our school community.
-            </p>
-          </div>
-
-          <h2 className="text-primary-dark mb-8 text-3xl font-bold dark:text-text-dark">
-            Recent News
-          </h2>
-
-          <div className="space-y-12">
-            {newsArticles.map((article, idx) => (
-              <article
-                key={idx}
-                className="flex flex-col items-start space-y-4 sm:flex-row sm:space-y-0 sm:space-x-6"
-              >
-                <div className="w-full sm:w-1/3">
-                  <img
-                    src={article.img}
-                    alt={article.title}
-                    className="h-48 w-full rounded-lg object-cover"
-                  />
-                </div>
-                <div className="w-full sm:w-2/3">
-                  <p className="text-text-secondary-light dark:text-text-secondary-dark mb-1 text-sm">
-                    {article.date}
-                  </p>
-                  <h3 className="text-primary-dark mb-2 text-2xl font-semibold dark:text-white">
-                    {article.title}
-                  </h3>
-                  <p className="text-text-secondary-light dark:text-text-secondary-dark mb-4">
-                    {article.description}
-                  </p>
-                  <a
-                    className="text-primary-dark font-semibold hover:underline dark:text-primary"
-                    href="#"
-                  >
-                    Read More →
-                  </a>
-                </div>
-              </article>
-            ))}
-          </div>
-
-          {/* Pagination */}
-          <div className="flex justify-center pt-8">
-            <nav className="flex items-center space-x-2">
-              {["Previous", "1", "2", "3", "Next"].map((page, idx) => (
-                <a
-                  key={idx}
-                  className={`rounded-md px-4 py-2 ${
-                    page === "1"
-                      ? "bg-primary-dark text-white"
-                      : "dark:bg-card-dark text-text-secondary-light dark:text-text-secondary-dark bg-background-light hover:bg-gray-100 dark:hover:bg-gray-600"
-                  }`}
-                  href="#"
-                >
-                  {page}
-                </a>
-              ))}
-            </nav>
+      <div
+        className={`flex flex-col justify-center p-8 ${
+          featured ? "lg:w-1/2" : ""
+        }`}
+      >
+        <div className="mb-4 flex items-center gap-4 text-xs font-bold text-gray-400">
+          <span className="flex items-center gap-1">
+            <Calendar size={14} /> {date}
+          </span>
+          <span className="flex items-center gap-1">
+            <User size={14} /> By {author}
+          </span>
+        </div>
+        <h3
+          className={`${
+            featured ? "text-3xl lg:text-4xl" : "text-xl"
+          } mb-4 leading-tight font-black transition-colors group-hover:text-[#7c3aed]`}
+        >
+          {title}
+        </h3>
+        <p className="mb-6 line-clamp-3 text-sm leading-relaxed text-gray-500">
+          Stay updated with heartwarming stories, exciting activities, and
+          important announcements from our vibrant school family.
+        </p>
+        <div className="mt-auto flex items-center justify-between">
+          <button className="group/btn flex items-center gap-2 text-sm font-black tracking-wider text-[#7c3aed] uppercase">
+            Read More
+            <ArrowRight
+              size={16}
+              className="transition-transform group-hover/btn:translate-x-2"
+            />
+          </button>
+          <div className="flex gap-2">
+            <button className="rounded-full p-2 text-gray-400 hover:bg-gray-50">
+              <Share2 size={18} />
+            </button>
+            <button className="rounded-full p-2 text-gray-400 hover:bg-gray-50">
+              <Bookmark size={18} />
+            </button>
           </div>
         </div>
+      </div>
+    </div>
+  </article>
+);
 
-        {/* Sidebar */}
-        <aside>
-          <div className="bg-card-light dark:bg-card-dark sticky top-8 rounded-lg border border-border-light p-8 shadow-lg dark:border-border-dark">
-            <h3 className="text-primary-dark mb-2 text-2xl font-bold dark:text-white">
-              Newsletter Sign-Up
-            </h3>
-            <p className="text-text-secondary-light dark:text-text-secondary-dark mb-6">
-              Stay up-to-date with our latest news and events delivered right to
-              your inbox.
-            </p>
-            <form className="space-y-4">
-              <div>
-                <label className="sr-only" htmlFor="name">
-                  Name
-                </label>
+export default function News() {
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  const categories = [
+    "All",
+    "Class Activities",
+    "School Events",
+    "Sports Day",
+    "Creative Arts",
+    "Parent Updates",
+  ];
+
+  return (
+    <div className="min-h-screen bg-white">
+      <div className="animate-in fade-in min-h-screen bg-gray-50 duration-700">
+        {/* 1. Page Title & Search */}
+        <section className="border-b border-gray-100 bg-white px-6 pt-20 pb-10">
+          <div className="mx-auto flex max-w-7xl flex-col justify-between gap-8 md:flex-row md:items-end">
+            <div className="space-y-4">
+              <h1 className="text-5xl font-black tracking-tighter text-gray-900 md:text-7xl">
+                School <br />
+                <span className="text-[#7c3aed]">News & Stories</span>
+              </h1>
+              <p className="max-w-md font-medium text-gray-500">
+                Celebrating milestones, sharing joyful moments, and keeping our
+                families informed.
+              </p>
+            </div>
+
+            <div className="flex w-full flex-col gap-4 sm:flex-row md:w-auto">
+              <div className="group relative">
+                <Search
+                  className="absolute top-1/2 left-4 -translate-y-1/2 text-gray-400 transition-colors group-focus-within:text-[#7c3aed]"
+                  size={20}
+                />
                 <input
                   type="text"
-                  id="name"
-                  placeholder="Your Name"
-                  className="w-full rounded-md border-border-light bg-background-light text-text-light focus:border-primary focus:ring-primary dark:border-border-dark dark:bg-background-dark dark:text-text-dark"
+                  placeholder="Search updates..."
+                  className="w-full rounded-2xl border border-transparent bg-gray-50 py-4 pr-6 pl-12 transition-all outline-none focus:border-[#7c3aed] md:w-80"
                 />
               </div>
-              <div>
-                <label className="sr-only" htmlFor="email">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  placeholder="Your Email Address"
-                  className="w-full rounded-md border-border-light bg-background-light text-text-light focus:border-primary focus:ring-primary dark:border-border-dark dark:bg-background-dark dark:text-text-dark"
-                />
-              </div>
-              <button
-                type="submit"
-                className="text-primary-dark w-full rounded-md bg-primary px-4 py-3 font-bold transition-opacity hover:opacity-90"
-              >
-                Subscribe
+              <button className="flex items-center justify-center gap-2 rounded-2xl bg-[#1e1b4b] p-4 text-white transition-colors hover:bg-[#7c3aed]">
+                <Filter size={20} />
               </button>
-            </form>
+            </div>
           </div>
-        </aside>
-      </main>
+
+          {/* Categories */}
+          <div className="no-scrollbar mx-auto mt-12 flex max-w-7xl gap-3 overflow-x-auto pb-2">
+            {categories.map((cat) => (
+              <CategoryBadge
+                key={cat}
+                active={activeCategory === cat}
+                onClick={() => setActiveCategory(cat)}
+              >
+                {cat}
+              </CategoryBadge>
+            ))}
+          </div>
+        </section>
+
+        {/* 2. Content Grid */}
+        <section className="mx-auto max-w-7xl px-6 py-16">
+          <div className="grid gap-10 lg:grid-cols-3">
+            {/* Main Feed */}
+            <div className="space-y-10 lg:col-span-2">
+              <NewsCard
+                featured
+                category="School Events"
+                date="March 12, 2026"
+                author="School Admin"
+                title="Annual Cultural Day Celebration Brings Color and Joy to Campus"
+                image="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80"
+              />
+
+              <div className="grid gap-8 md:grid-cols-2">
+                <NewsCard
+                  category="Sports Day"
+                  date="March 8, 2026"
+                  author="PE Teacher"
+                  title="Our Little Champions Shine at Inter-House Sports"
+                  image="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&q=80"
+                />
+                <NewsCard
+                  category="Creative Arts"
+                  date="March 3, 2026"
+                  author="Art Department"
+                  title="Young Artists Showcase Their Beautiful Creations"
+                  image="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80"
+                />
+              </div>
+            </div>
+
+            {/* Sidebar */}
+            <aside className="space-y-10">
+              {/* Trending */}
+              <div className="rounded-[2.5rem] border border-gray-100 bg-white p-8 shadow-sm">
+                <div className="mb-6 flex items-center gap-2 text-lg font-black">
+                  <TrendingUp size={24} className="text-[#ec4899]" />
+                  Popular Updates
+                </div>
+                <div className="space-y-6">
+                  {[
+                    "Term 2 Resumption Date Announcement",
+                    "Parent-Teacher Meeting Schedule",
+                    "New Playground Equipment Installed",
+                  ].map((item, i) => (
+                    <div key={i} className="group flex cursor-pointer gap-4">
+                      <span className="text-2xl font-black text-gray-100 transition-colors group-hover:text-purple-100">
+                        0{i + 1}
+                      </span>
+                      <p className="leading-tight font-bold text-gray-800 transition-colors group-hover:text-[#7c3aed]">
+                        {item}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Newsletter */}
+              <div className="relative overflow-hidden rounded-[2.5rem] bg-[#7c3aed] p-8 text-white">
+                <div className="relative z-10">
+                  <Bell size={40} className="mb-4 text-[#facc15]" />
+                  <h3 className="mb-2 text-2xl font-black">Stay Connected.</h3>
+                  <p className="mb-6 text-sm text-purple-100">
+                    Receive important school updates and event reminders.
+                  </p>
+                  <div className="space-y-3">
+                    <input
+                      type="email"
+                      placeholder="Parent email address"
+                      className="w-full rounded-2xl border border-white/20 bg-white/10 p-4 text-white outline-none placeholder:text-white/50 focus:bg-white/20"
+                    />
+                    <button className="w-full rounded-2xl bg-[#facc15] py-4 font-black text-black transition-all hover:scale-105">
+                      Subscribe
+                    </button>
+                  </div>
+                </div>
+                <Newspaper className="absolute -right-10 -bottom-10 h-48 w-48 -rotate-12 opacity-10" />
+              </div>
+            </aside>
+          </div>
+        </section>
+      </div>
     </div>
   );
 }

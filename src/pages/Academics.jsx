@@ -1,145 +1,218 @@
+import React from "react";
 import {
-  GraduationCap,
-  Volleyball,
-  Music,
   Palette,
-  Theater,
-  Microscope,
-  CheckCircle,
+  Globe,
+  Calculator,
+  Music,
+  Languages,
+  Download,
+  CheckCircle2,
+  ArrowRight,
+  BookOpen,
+  Layers,
+  Heart,
+  Puzzle,
 } from "lucide-react";
-import Navbar from "../components/Navbar"; // added
+
+const DepartmentCard = ({ icon: Icon, title, subjects, color, image }) => (
+  <div className="group relative overflow-hidden rounded-[2.5rem] border border-gray-100 bg-white shadow-sm transition-all duration-500 hover:shadow-2xl">
+    <div className="relative h-48 overflow-hidden">
+      <img
+        src={image}
+        alt={title}
+        className="h-full w-full object-cover brightness-75 transition-transform duration-700 group-hover:scale-110 group-hover:brightness-90"
+      />
+      <div
+        className={`absolute top-4 right-4 rounded-2xl p-3 text-white shadow-lg ${color}`}
+      >
+        {Icon && <Icon size={24} />}
+      </div>
+    </div>
+    <div className="p-8">
+      <h3 className="mb-4 text-2xl font-black text-gray-900">{title}</h3>
+      <div className="mb-6 flex flex-wrap gap-2">
+        {subjects.map((s) => (
+          <span
+            key={s}
+            className="rounded-full border border-gray-100 bg-gray-50 px-3 py-1 text-xs font-bold text-gray-500"
+          >
+            {s}
+          </span>
+        ))}
+      </div>
+      <button className="flex items-center gap-2 text-sm font-black tracking-widest text-[#7c3aed] uppercase transition-all group-hover:gap-4">
+        Learn More <ArrowRight size={16} />
+      </button>
+    </div>
+  </div>
+);
 
 export default function Academics() {
   return (
-    <div className="mx-auto max-w-7xl bg-background-light px-4 font-display text-text-light sm:px-6 lg:px-8 dark:bg-background-dark dark:text-text-dark">
-      <Navbar />
-      <main className="py-16 sm:py-24">
-        {/* Academic Programs Intro */}
-        <section className="mb-16 text-center sm:mb-24">
-          <h1 className="text-heading-light dark:text-heading-dark text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-            Our Academic Programs
+    <div className="min-h-screen bg-white">
+      <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
+        {/* 1. Header Section */}
+        <section className="mx-auto max-w-7xl px-6 pt-20 pb-12 text-center">
+          <span className="text-sm font-black tracking-[0.3em] text-[#ec4899] uppercase">
+            Our Learning Programs
+          </span>
+          <h1 className="mt-4 mb-6 text-5xl font-black tracking-tighter text-gray-900 md:text-7xl">
+            Building Bright <span className="text-[#7c3aed]">Young Minds</span>
           </h1>
-          <p className="mx-auto mt-4 max-w-3xl text-lg text-text-light sm:text-xl dark:text-text-dark">
-            Fostering curiosity and a love for learning through a balanced,
-            engaging, and comprehensive curriculum from nursery to primary
-            levels.
+          <p className="mx-auto max-w-2xl text-xl leading-relaxed text-gray-500">
+            Our curriculum is designed to inspire curiosity, creativity, and
+            confidence in every child — from their very first classroom
+            experience.
           </p>
         </section>
 
-        {/* Nursery Program */}
-        <section className="mb-16 flex flex-col items-center gap-8 sm:mb-20 md:flex-row md:gap-12">
-          <div className="flex-shrink-0 md:w-1/2">
-            <img
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHb_A-Ov5JA_D5t6eUwFwLN6KZTS9FPWkfFsgB2vujMY011s0M-IUlqPmwpgaKh33K3kdk29oy0eea3SMIDJIjQn2p8gD7qBTb2XbcxoJg9qjuHcIBqIsco2DMqXtzzxaJ6lAXX-mrG_5dT63AgGqqHdtqNf9KNrmgE9sRbH7C56CUrI7nKMJVr5yk2o-L_xf7GfEnVqz-ECoTlibOn9Y2eH6yx5Sg8WBGaJ_jom0IODGFv9SVsVJ3GstZXkZLgwQaM2em5lmqjsXP"
-              alt="Young children engaged in playful learning activities in a colorful classroom."
-              className="h-auto w-full rounded-lg object-cover shadow-lg"
+        {/* 2. Learning Areas Grid */}
+        <section className="mx-auto max-w-7xl px-6 py-12">
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <DepartmentCard
+              title="Early Literacy"
+              icon={BookOpen}
+              color="bg-blue-500"
+              subjects={[
+                "Phonics",
+                "Reading",
+                "Storytelling",
+                "Creative Writing",
+              ]}
+              image="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&q=80"
             />
-          </div>
-          <div className="md:w-1/2">
-            <h2 className="text-heading-light dark:text-heading-dark mb-4 text-3xl font-bold sm:text-4xl">
-              Nursery Program
-            </h2>
-            <p className="mb-6 text-text-light dark:text-text-dark">
-              Our nursery program is designed to provide a safe, nurturing, and
-              stimulating environment where young children can learn through
-              play and exploration. We focus on developing foundational skills
-              in literacy, numeracy, and social interaction.
-            </p>
-            <ul className="space-y-3">
-              {[
-                "Play-based learning to encourage creativity and problem-solving.",
-                "Early literacy and language development through storytelling and songs.",
-                "Development of fine and gross motor skills.",
-              ].map((item) => (
-                <li key={item} className="flex items-start">
-                  <CheckCircle className="mt-1 mr-3 h-6 w-6 flex-shrink-0 text-primary" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
+
+            <DepartmentCard
+              title="Numeracy & Logic"
+              icon={Calculator}
+              color="bg-green-500"
+              subjects={[
+                "Counting",
+                "Basic Math",
+                "Problem Solving",
+                "Patterns",
+              ]}
+              image="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80"
+            />
+
+            <DepartmentCard
+              title="Creative Arts"
+              icon={Palette}
+              color="bg-pink-500"
+              subjects={["Drawing", "Painting", "Crafts", "Imagination Play"]}
+              image="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80"
+            />
+
+            <DepartmentCard
+              title="Music & Movement"
+              icon={Music}
+              color="bg-purple-600"
+              subjects={["Singing", "Dance", "Rhythm", "Drama"]}
+              image="https://images.unsplash.com/photo-1514525253361-bee8718a74a2?auto=format&fit=crop&q=80"
+            />
+
+            <DepartmentCard
+              title="Social Studies"
+              icon={Globe}
+              color="bg-orange-500"
+              subjects={["Community", "Culture", "Citizenship", "Environment"]}
+              image="https://images.unsplash.com/photo-1491841573634-28140fc7ced7?auto=format&fit=crop&q=80"
+            />
+
+            <DepartmentCard
+              title="Languages"
+              icon={Languages}
+              color="bg-amber-500"
+              subjects={["English", "French Basics", "Conversation Skills"]}
+              image="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&q=80"
+            />
           </div>
         </section>
 
-        {/* Primary Education */}
-        <section className="mb-16 flex flex-col items-center gap-8 sm:mb-20 md:flex-row-reverse md:gap-12">
-          <div className="flex-shrink-0 md:w-1/2">
-            <img
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDB9TiUB9Qr80ogxJFYdRyKD2LvLlM0l9JNg_Yf14tqkd4Ju9n6-PG7trT4yQqjpRf91pQ_p8VIxliHGib0cPnGzc-P2nKpi_Yjs0MBUOfqnFA516WIra0TTwgHEBBevC3eHVniA2AVYmQNiJ5us0pavjPd1qZW7KCzJlVo9VZ_Qcix8hRe78rat2ZIWbhHFZHXb0lqVzcgNC48PJ97EuKAboRv_CguqKzBcZbHxrwj5NpULLkDHRvo5iitELSsH_SLsVng68urv4Ea"
-              alt="Primary school students actively participating in a science lesson with their teacher."
-              className="h-auto w-full rounded-lg object-cover shadow-lg"
-            />
-          </div>
-          <div className="md:w-1/2">
-            <h2 className="text-heading-light dark:text-heading-dark mb-4 text-3xl font-bold sm:text-4xl">
-              Primary Education
-            </h2>
-            <p className="mb-6 text-text-light dark:text-text-dark">
-              Our primary curriculum builds upon the foundations of early
-              learning, offering a comprehensive education that balances
-              academic rigor with personal development. We aim to equip students
-              with the knowledge and skills they need for future success.
-            </p>
-            <ul className="space-y-3">
-              {[
-                "Core subjects including Mathematics, Science, and Language Arts.",
-                "Introduction to Social Studies, Arts, and Physical Education.",
-                "Focus on critical thinking, collaboration, and communication skills.",
-              ].map((item) => (
-                <li key={item} className="flex items-start">
-                  <CheckCircle className="mt-1 mr-3 h-6 w-6 flex-shrink-0 text-primary" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
+        {/* 3. Development Focus Section */}
+        <section className="px-6 py-24">
+          <div className="relative mx-auto flex max-w-7xl flex-col items-center gap-16 overflow-hidden rounded-[3.5rem] bg-[#1e1b4b] p-8 text-white md:p-20 lg:flex-row">
+            <div className="absolute top-0 right-0 -mt-48 -mr-48 h-96 w-96 bg-[#7c3aed] opacity-20 blur-[150px]" />
 
-        {/* Co-curricular Activities */}
-        <section className="rounded-lg bg-gray-50 p-8 text-center sm:p-12 dark:bg-brand-dark/50">
-          <h2 className="text-heading-light dark:text-heading-dark mb-4 text-3xl font-bold sm:text-4xl">
-            Co-curricular Activities
-          </h2>
-          <p className="mx-auto mb-8 max-w-3xl text-text-light dark:text-text-dark">
-            We believe in holistic development. Our wide range of co-curricular
-            activities helps students discover new passions, build confidence,
-            and develop important life skills beyond the classroom.
-          </p>
+            <div className="relative z-10 space-y-8 lg:w-1/2">
+              <h2 className="text-4xl leading-tight font-black md:text-5xl">
+                Learning Through <br />
+                <span className="text-[#facc15]">Discovery & Play</span>
+              </h2>
 
-          <div className="mx-auto grid max-w-4xl grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5">
-            {[
-              {
-                icon: <Volleyball className="h-8 w-8 text-primary" />,
-                label: "Sports",
-              },
-              {
-                icon: <Music className="h-8 w-8 text-primary" />,
-                label: "Music",
-              },
-              {
-                icon: <Palette className="h-8 w-8 text-primary" />,
-                label: "Art & Craft",
-              },
-              {
-                icon: <Theater className="h-8 w-8 text-primary" />,
-                label: "Drama",
-              },
-              {
-                icon: <Microscope className="h-8 w-8 text-primary" />,
-                label: "Science Club",
-              },
-            ].map(({ icon, label }) => (
-              <div key={label} className="flex flex-col items-center">
-                <div className="mb-2 flex h-16 w-16 items-center justify-center rounded-full bg-primary/20">
-                  {icon}
-                </div>
-                <span className="text-heading-light text-sm font-medium dark:text-gray-200">
-                  {label}
-                </span>
+              <div className="space-y-4">
+                {[
+                  {
+                    t: "Play-Based Learning",
+                    d: "Children explore, create, and discover through guided play.",
+                  },
+                  {
+                    t: "Small Class Sizes",
+                    d: "Personalized attention to help every child thrive.",
+                  },
+                  {
+                    t: "Holistic Development",
+                    d: "We nurture academic, emotional, and social growth.",
+                  },
+                ].map((item, i) => (
+                  <div
+                    key={i}
+                    className="flex gap-4 rounded-2xl p-4 transition-colors hover:bg-white/5"
+                  >
+                    <CheckCircle2 className="shrink-0 text-[#facc15]" />
+                    <div>
+                      <h4 className="text-lg font-bold">{item.t}</h4>
+                      <p className="text-sm text-gray-400">{item.d}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+
+              <button className="flex items-center gap-3 rounded-2xl bg-white px-10 py-5 font-black text-[#1e1b4b] shadow-2xl transition-all hover:scale-105">
+                <Download size={20} /> Download School Brochure
+              </button>
+            </div>
+
+            <div className="relative z-10 grid grid-cols-2 gap-4 lg:w-1/2">
+              <div className="space-y-4 pt-12">
+                <div className="flex aspect-square flex-col justify-end rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur">
+                  <Heart className="mb-4 text-[#facc15]" size={32} />
+                  <div className="text-3xl font-black">10:1</div>
+                  <div className="text-xs font-bold uppercase opacity-60">
+                    Student-Teacher Ratio
+                  </div>
+                </div>
+
+                <div className="flex aspect-square flex-col justify-end rounded-3xl bg-[#7c3aed] p-8 shadow-xl shadow-[#7c3aed]/20">
+                  <Puzzle className="mb-4 text-white" size={32} />
+                  <div className="text-3xl font-black">20+</div>
+                  <div className="text-xs font-bold uppercase opacity-80">
+                    Weekly Activities
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <div className="flex aspect-square flex-col justify-end rounded-3xl bg-[#ec4899] p-8 shadow-xl shadow-[#ec4899]/20">
+                  <Layers className="mb-4 text-white" size={32} />
+                  <div className="text-3xl font-black">100%</div>
+                  <div className="text-xs font-bold uppercase opacity-80">
+                    Safe Learning Environment
+                  </div>
+                </div>
+
+                <div className="flex aspect-square flex-col justify-end rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur">
+                  <Globe className="mb-4 text-[#facc15]" size={32} />
+                  <div className="text-3xl font-black">5+</div>
+                  <div className="text-xs font-bold uppercase opacity-60">
+                    Cultural Celebration Days
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
-      </main>
+      </div>
     </div>
   );
 }

@@ -1,123 +1,160 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import {
+  Menu,
+  X,
+  Search,
+  User,
+  GraduationCap,
+  ChevronRight,
+} from "lucide-react";
+import Logo from "../assets/logo.png";
 
-const links = [
-  ["Home", "/"],
-  ["About", "/about"],
-  ["Academics", "/academics"],
-  ["Admissions", "/admissions"],
-  ["Calendar", "/calendar"],
-  ["News & Updates", "/news"],
-  ["Contact", "/contact"],
-];
-
-export default function Navbar() {
-  const [open, setOpen] = useState(false);
+export const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
+  // Determine active page based on current path
+  const activePage =
+    location.pathname === "/" ? "home" : location.pathname.slice(1);
+
+  const navLinks = [
+    { name: "Home", id: "home", path: "/" },
+    { name: "About", id: "about", path: "/about" },
+    { name: "Academics", id: "academics", path: "/academics" },
+    { name: "News", id: "news", path: "/news" },
+    { name: "Contact", id: "contact", path: "/contact" },
+  ];
+
+  // Close on ESC key and lock scroll when drawer is open
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === "Escape") setIsOpen(false);
+    };
+
+    if (isOpen) {
+      window.addEventListener("keydown", handleEsc);
+      document.body.style.overflow = "hidden";
+    }
+
+    return () => {
+      window.removeEventListener("keydown", handleEsc);
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
+
   return (
-    <header className="sticky top-0 z-50 border-b border-border-light bg-background-light dark:border-border-dark dark:bg-background-dark">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        {/* Logo */}
-        <Link to="/" className="flex items-center gap-3">
-          <div className="rounded-lg bg-primary/10 p-2 dark:bg-primary/20">
-            <svg
-              className="h-7 w-7 text-primary"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-            >
-              <path
-                d="M12 2L3 7v10l9 5 9-5V7L12 2z"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </div>
-          <span className="text-primary-dark text-lg font-bold dark:text-text-dark">
-            [School Name]
-          </span>
-        </Link>
-
-        {/* Desktop navigation */}
-        <nav className="hidden items-center gap-8 md:flex">
-          {links.map(([label, to]) => {
-            const active = location.pathname === to;
-
-            return (
-              <Link
-                key={label}
-                to={to}
-                className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
-                  active
-                    ? "text-primary-dark bg-primary/10 dark:text-primary"
-                    : "hover:text-primary-dark text-secondary-text-light dark:text-secondary-text-dark dark:hover:text-primary"
-                } `}
-              >
-                {label}
-              </Link>
-            );
-          })}
-        </nav>
-
-        {/* Mobile menu button */}
-        <button
-          onClick={() => setOpen(true)}
-          className="text-primary-dark rounded-md p-2 md:hidden dark:text-text-dark"
-          aria-label="Open menu"
-        >
-          <Menu className="h-6 w-6" />
-        </button>
-      </div>
-
-      {/* Overlay */}
-      {open && (
-        <div
-          onClick={() => setOpen(false)}
-          className="fixed inset-0 bg-black/40 backdrop-blur-sm md:hidden"
-        />
-      )}
-
-      {/* Slide-in drawer */}
-      <aside
-        className={`fixed top-0 right-0 h-full w-72 transform border-l border-border-light bg-background-light transition-transform duration-300 ease-in-out dark:border-border-dark dark:bg-background-dark ${open ? "translate-x-0" : "translate-x-full"} z-50 md:hidden`}
-      >
-        <div className="flex h-16 items-center justify-between border-b border-border-light px-4 dark:border-border-dark">
-          <span className="text-primary-dark font-semibold dark:text-text-dark">
-            Menu
-          </span>
+    <>
+      {/* Top Navbar */}
+      <nav className="sticky top-0 z-50 flex items-center justify-between bg-[#7c3aed] px-4 py-4 text-white shadow-lg md:px-8">
+        <div className="flex items-center gap-4">
+          {/* Mobile Menu Button */}
           <button
-            onClick={() => setOpen(false)}
-            aria-label="Close menu"
-            className="rounded-md p-2"
+            onClick={() => setIsOpen(true)}
+            aria-label="Open menu"
+            aria-expanded={isOpen}
+            className="rounded-lg p-1 transition-colors hover:bg-white/10 lg:hidden"
           >
-            <X className="h-6 w-6" />
+            <Menu size={28} />
           </button>
+
+          {/* Logo */}
+          <div className="flex cursor-pointer items-center gap-2">
+            <Link to="/" className="">
+              <img
+                src={Logo}
+                alt="Logo"
+                className="h-12 w-auto object-contain"
+              />
+            </Link>
+          </div>
         </div>
 
-        <nav className="space-y-2 px-4 py-6">
-          {links.map(([label, to]) => {
-            const active = location.pathname === to;
+        {/* Desktop Nav Links */}
+        <div className="hidden gap-8 font-semibold lg:flex">
+          {navLinks.map((link) => (
+            <Link
+              key={link.id}
+              to={link.path}
+              className={`transition-colors hover:text-[#facc15] ${
+                activePage === link.id ? "text-[#facc15]" : ""
+              }`}
+            >
+              {link.name}
+            </Link>
+          ))}
+        </div>
 
-            return (
+        {/* Icons */}
+        {/* <div className="flex items-center gap-4">
+          <Search
+            size={22}
+            aria-label="Search"
+            className="cursor-pointer hover:opacity-80"
+          />
+          <div
+            aria-label="User profile"
+            className="cursor-pointer rounded-full bg-[#ec4899] p-2 transition-transform hover:scale-105"
+          >
+            <User size={20} fill="currentColor" />
+          </div>
+        </div> */}
+      </nav>
+
+      {/* Mobile Overlay */}
+      <div
+        className={`fixed inset-0 z-60 bg-black/60 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
+          isOpen ? "opacity-100" : "pointer-events-none opacity-0"
+        }`}
+        onClick={() => setIsOpen(false)}
+      />
+
+      {/* Mobile Drawer */}
+      <aside
+        role="dialog"
+        aria-modal="true"
+        onClick={(e) => e.stopPropagation()}
+        className={`fixed top-0 left-0 z-70 h-full w-full max-w-xs transform bg-white shadow-2xl transition-transform duration-500 ease-out lg:hidden ${
+          isOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <div className="p-6">
+          <div className="mb-10 flex items-center justify-between">
+            <span className="flex items-center">
+              <img
+                src={Logo}
+                alt="Logo"
+                className="h-8 w-auto object-contain"
+              />
+            </span>
+            <button
+              onClick={() => setIsOpen(false)}
+              aria-label="Close menu"
+              className="rounded-xl bg-gray-100 p-2 hover:bg-gray-200"
+            >
+              <X size={24} />
+            </button>
+          </div>
+
+          <nav className="space-y-2">
+            {navLinks.map((link) => (
               <Link
-                key={label}
-                to={to}
-                onClick={() => setOpen(false)}
-                className={`block rounded-md px-3 py-2 text-sm font-medium transition-colors ${
-                  active
-                    ? "text-primary-dark bg-primary/10 dark:text-primary"
-                    : "text-text-light hover:bg-subtle-light dark:text-text-dark dark:hover:bg-subtle-dark"
-                } `}
+                key={link.id}
+                to={link.path}
+                onClick={() => setIsOpen(false)}
+                className={`flex w-full items-center justify-between rounded-2xl p-4 text-lg font-bold transition-all ${
+                  activePage === link.id
+                    ? "bg-[#f3e8ff] text-[#7c3aed]"
+                    : "text-gray-800 hover:bg-[#f3e8ff] hover:text-[#7c3aed]"
+                }`}
               >
-                {label}
+                {link.name}
+                <ChevronRight size={20} className="text-gray-300" />
               </Link>
-            );
-          })}
-        </nav>
+            ))}
+          </nav>
+        </div>
       </aside>
-    </header>
+    </>
   );
-}
+};

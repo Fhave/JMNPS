@@ -1,173 +1,191 @@
+import React from "react";
 import {
-  School,
-  Users,
-  Library,
-  Brain,
-  Lightbulb,
-  UserCheck,
-  Flower,
-  Users as Community,
-  PartyPopper,
+  Quote,
+  Target,
+  Heart,
+  Shield,
+  Award,
+  ChevronRight,
 } from "lucide-react";
-import Navbar from "../components/Navbar"; // added
+
+const ValueCard = ({ icon: Icon, title, desc }) => (
+  <div className="rounded-[2.5rem] border border-gray-100 bg-white p-8 shadow-xl shadow-purple-50 transition-transform hover:-translate-y-2">
+    <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#f3e8ff] text-[#7c3aed]">
+      {Icon && <Icon size={28} />}
+    </div>
+    <h3 className="mb-3 text-xl font-bold">{title}</h3>
+    <p className="text-sm leading-relaxed text-gray-500">{desc}</p>
+  </div>
+);
+
+const TimelineItem = ({ year, title, desc, isLast }) => (
+  <div className="group flex gap-8">
+    <div className="flex flex-col items-center">
+      <div className="h-4 w-4 rounded-full bg-[#7c3aed] ring-4 ring-purple-100" />
+      {!isLast && (
+        <div className="h-full w-0.5 bg-gray-100 transition-colors group-hover:bg-purple-200" />
+      )}
+    </div>
+    <div className="pb-12">
+      <span className="text-lg font-black text-[#ec4899]">{year}</span>
+      <h4 className="mt-1 mb-2 text-2xl font-bold text-gray-900">{title}</h4>
+      <p className="max-w-md text-gray-500">{desc}</p>
+    </div>
+  </div>
+);
 
 export default function About() {
   return (
-    <div className="container mx-auto bg-background-light px-6 py-4 font-display text-text-light dark:bg-background-dark dark:text-text-dark">
-      <Navbar />
-      <main className="py-16 md:py-24">
-        {/* About Intro */}
-        <section className="mx-auto mb-20 max-w-3xl text-center md:mb-28">
-          <h1 className="mb-4 text-4xl font-bold text-text-light md:text-6xl dark:text-white">
-            About Our School
+    <div className="min-h-screen bg-white">
+      {/* 1. Page Header */}
+      <section className="relative overflow-hidden bg-[#1e1b4b] px-6 py-20 text-center text-white md:py-32">
+        <div className="relative z-10 mx-auto max-w-4xl">
+          <h1 className="mb-6 text-5xl font-black tracking-tight md:text-6xl">
+            Growing Little <span className="text-[#facc15]">Leaders</span>
           </h1>
-          <p className="text-lg text-slate-600 md:text-xl dark:text-slate-400">
-            A nurturing environment dedicated to providing a high-quality
-            education for young children. Our curriculum elevates play-based
-            learning that prepares students for primary education and beyond.
+          <p className="mx-auto max-w-2xl text-xl leading-relaxed text-gray-300">
+            For over 20 years, Sunshine Kids School has been a joyful place
+            where children learn, play, and build confidence every single day.
           </p>
-        </section>
+        </div>
+      </section>
 
-        {/* Stats Section */}
-        <section className="mt-12 grid grid-cols-1 gap-8 text-center md:mt-16 md:grid-cols-3">
+      {/* 2. Philosophy & Mission */}
+      <section className="mx-auto grid max-w-7xl items-center gap-20 px-6 py-24 lg:grid-cols-2">
+        <div className="overflow-hidden rounded-[3rem] shadow-2xl">
+          <img
+            src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&q=80"
+            alt="Happy students"
+            className="h-[600px] w-full object-cover"
+          />
+        </div>
+
+        <div className="space-y-8">
+          <div className="space-y-4">
+            <h2 className="text-4xl font-black text-gray-900">
+              Learning Through Joy
+            </h2>
+            <p className="text-lg leading-relaxed text-gray-500">
+              We believe every child is unique and full of potential. Our
+              classrooms are safe, caring spaces where curiosity is encouraged
+              and creativity shines.
+            </p>
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-2">
+            <ValueCard
+              icon={Heart}
+              title="Care"
+              desc="We nurture every child with kindness and patience."
+            />
+            <ValueCard
+              icon={Target}
+              title="Growth"
+              desc="Helping children build strong foundations for life."
+            />
+            <ValueCard
+              icon={Shield}
+              title="Safety"
+              desc="Providing a secure and supportive learning environment."
+            />
+            <ValueCard
+              icon={Award}
+              title="Confidence"
+              desc="Encouraging children to believe in themselves."
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Our Journey */}
+      <section className="bg-gray-50 px-6 py-24">
+        <div className="mx-auto grid max-w-7xl gap-16 lg:grid-cols-3">
+          <div className="h-fit lg:sticky lg:top-32">
+            <h2 className="mb-6 text-4xl font-black">Our Journey</h2>
+            <p className="mb-8 text-gray-500">
+              From humble beginnings to a vibrant learning community.
+            </p>
+            <button className="flex items-center gap-2 rounded-2xl bg-[#7c3aed] px-8 py-4 font-black text-white shadow-lg">
+              View School Story <ChevronRight size={20} />
+            </button>
+          </div>
+
+          <div className="lg:col-span-2">
+            <TimelineItem
+              year="2005"
+              title="Our First Classroom"
+              desc="We opened our doors with 25 bright and curious children."
+            />
+            <TimelineItem
+              year="2012"
+              title="New Play Area"
+              desc="A colorful playground was built for fun and active learning."
+            />
+            <TimelineItem
+              year="2018"
+              title="Expanded Learning"
+              desc="Added music, art, and early STEM programs."
+            />
+            <TimelineItem
+              year="2024"
+              title="Growing Together"
+              desc="Now serving over 400 happy students each year."
+              isLast
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Leadership */}
+      <section className="mx-auto max-w-7xl px-6 py-24">
+        <div className="mb-16 text-center">
+          <h2 className="mb-4 text-4xl font-black">Meet Our Team</h2>
+          <p className="mx-auto max-w-2xl text-gray-500">
+            Passionate educators dedicated to your child’s growth and happiness.
+          </p>
+        </div>
+
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {[
             {
-              icon: <School className="mx-auto mb-4 h-12 w-12 text-primary" />,
-              title: "Established 1990",
-              desc: "Over 3 decades of excellence in education.",
+              name: "Mrs. Grace Adams",
+              role: "Head Teacher",
+              img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80",
             },
             {
-              icon: <Users className="mx-auto mb-4 h-12 w-12 text-primary" />,
-              title: "150+ Students",
-              desc: "A close-knit community of learners.",
+              name: "Mr. Daniel Scott",
+              role: "Primary Coordinator",
+              img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80",
             },
             {
-              icon: <Library className="mx-auto mb-4 h-12 w-12 text-primary" />,
-              title: "18 Primary Years",
-              desc: "Specializing in foundational learning.",
+              name: "Ms. Linda Brown",
+              role: "Early Years Lead",
+              img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80",
             },
-          ].map(({ icon, title, desc }) => (
-            <div
-              key={title}
-              className="bg-card-light dark:bg-card-dark rounded-xl p-8 shadow-sm"
-            >
-              {icon}
-              <h3 className="text-2xl font-bold text-text-light dark:text-white">
-                {title}
-              </h3>
-              <p className="mt-2 text-slate-600 dark:text-slate-400">{desc}</p>
+            {
+              name: "Mr. James Lee",
+              role: "Activities Director",
+              img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80",
+            },
+          ].map((leader, i) => (
+            <div key={i} className="group cursor-pointer">
+              <div className="relative mb-4 aspect-[4/5] overflow-hidden rounded-[2rem] shadow-lg transition-all group-hover:shadow-2xl">
+                <img
+                  src={leader.img}
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  alt={leader.name}
+                />
+              </div>
+              <h4 className="text-xl font-black text-gray-900">
+                {leader.name}
+              </h4>
+              <p className="text-sm font-bold tracking-widest text-[#ec4899] uppercase">
+                {leader.role}
+              </p>
             </div>
           ))}
-        </section>
-
-        {/* Heads of School */}
-        <section className="mb-20 md:mb-28">
-          <div className="mx-auto mb-12 max-w-3xl text-center md:mb-16">
-            <h2 className="text-3xl font-bold text-text-light md:text-5xl dark:text-white">
-              Heads of School
-            </h2>
-            <p className="mt-4 text-lg text-slate-600 md:text-xl dark:text-slate-400">
-              Meet the dedicated leaders guiding our school's vision and
-              nurturing our students' growth.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-12">
-            {[
-              {
-                name: "Dr. Evelyn Reed",
-                role: "Headmistress",
-                img: "https://lh3.googleusercontent.com/aida-public/AB6AXuB_RWMypIG_cTr4xoq7mfjjW6VfVZeOXA_bS0fdkEv_bahkx596UFi1bq7UKK-KiJlekeh_KD0D7HtrXqfY6D7luKeGGiJhF2z8N7X-BJEu3rnTGxu0UZkrh9S93hJCUYTtIWTQSA02qosN1wbniGPQxqmgS0z9ehVyspu4ax9O_rQccBf_jUfwV1UYNvbDHXn3yuMgQvp0LIm9IIO0T6HhsR2KNQp8vY4MVQBbpvHto8KpkLqHANNeZUkMr1in1EE0oDft6wsf9CWW",
-                desc: "With 25 years in child education, Dr. Reed fosters an environment of curiosity and academic excellence.",
-              },
-              {
-                name: "Mr. David Chen",
-                role: "Deputy Head",
-                img: "https://lh3.googleusercontent.com/aida-public/AB6AXuD5jIvs2cB4mf-RxuHMZtoApKsiig-oJK6h_vt1y9_zUSICodpm38TLL6etBedRZ0OYpCFW5jXqJLEy8GTwTn6bXmPvblTu3rmds3jsa24aBeLhbslEHaFQYH0gxHL_oHTXhp6cqeWIgW_AupO1mYpRyUqgh1jDErKjq31qDs6CIJ4PlTSGD24JlpH13lkqVhqyOwF-PVwYbnRvslRcYSUxQ0RwTF0IE_ccv3ledK7fHXfj8lXna-qCVNhAZ8QSwo5CfdtAgl6EN5WH",
-                desc: "Mr. Chen is dedicated to innovative teaching methods and ensuring every student achieves their potential.",
-              },
-            ].map(({ name, role, img, desc }) => (
-              <div
-                key={name}
-                className="bg-card-light dark:bg-card-dark flex flex-col items-center gap-8 rounded-xl p-8 shadow-sm sm:flex-row"
-              >
-                <img
-                  src={img}
-                  alt={`Portrait of ${name}`}
-                  className="h-32 w-32 flex-shrink-0 rounded-full object-cover"
-                />
-                <div>
-                  <h3 className="text-2xl font-bold text-text-light dark:text-white">
-                    {name}
-                  </h3>
-                  <p className="mb-2 font-semibold text-primary">{role}</p>
-                  <p className="text-slate-600 dark:text-slate-400">{desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Why Choose Us */}
-        <section>
-          <div className="mx-auto mb-12 max-w-3xl text-center md:mb-16">
-            <h2 className="text-3xl font-bold text-text-light md:text-5xl dark:text-white">
-              Why Choose Us
-            </h2>
-            <p className="mt-4 text-lg text-slate-600 md:text-xl dark:text-slate-400">
-              Discover the unique advantages that make our school the perfect
-              place for your child's educational journey.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {[
-              {
-                icon: <Brain className="h-12 w-12 text-primary" />,
-                title: "Expert Teachers",
-                desc: "Our passionate educators are experts in early childhood development, committed to personalized learning.",
-              },
-              {
-                icon: <Lightbulb className="h-12 w-12 text-primary" />,
-                title: "Innovative Curriculum",
-                desc: "A balanced curriculum that blends core academics with arts, music, and physical education.",
-              },
-              {
-                icon: <UserCheck className="h-12 w-12 text-primary" />,
-                title: "Safe & Supportive",
-                desc: "We provide a secure and inclusive campus where every child feels valued and respected.",
-              },
-              {
-                icon: <Flower className="h-12 w-12 text-primary" />,
-                title: "Holistic Development",
-                desc: "Focus on nurturing social, emotional, and cognitive skills for well-rounded individuals.",
-              },
-              {
-                icon: <Community className="h-12 w-12 text-primary" />,
-                title: "Community Focused",
-                desc: "Strong parent-teacher partnerships create a supportive network for our students.",
-              },
-              {
-                icon: <PartyPopper className="h-12 w-12 text-primary" />,
-                title: "Joyful Learning",
-                desc: "We believe learning should be an exciting adventure, sparking a lifelong love for knowledge.",
-              },
-            ].map(({ icon, title, desc }) => (
-              <div
-                key={title}
-                className="bg-card-light dark:bg-card-dark rounded-xl p-8 shadow-sm"
-              >
-                <div className="mb-4 inline-block rounded-lg bg-primary/10 p-3 dark:bg-primary/20">
-                  {icon}
-                </div>
-                <h3 className="mb-2 text-2xl font-bold text-text-light dark:text-white">
-                  {title}
-                </h3>
-                <p className="text-slate-600 dark:text-slate-400">{desc}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-      </main>
+        </div>
+      </section>
     </div>
   );
 }

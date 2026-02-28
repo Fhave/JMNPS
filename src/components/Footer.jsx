@@ -1,77 +1,106 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { Facebook, Twitter, Mail, Send, MapPin, Phone } from "lucide-react";
 
-const Footer = () => {
-  return (
-    <footer className="mt-20 bg-subtle-light text-secondary-text-light dark:bg-subtle-dark dark:text-secondary-text-dark">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 px-4 py-10 sm:px-6 md:grid-cols-3 lg:px-8">
-        <div>
-          <h4 className="text-primary-dark mb-2 font-semibold dark:text-text-dark">
-            [School Name]
-          </h4>
-          <p className="text-sm">
-            Nurturing young minds since 1990 — excellence in early years and
-            primary education.
-          </p>
-        </div>
+export const Footer = () => (
+  <footer className="bg-[#1e1b4b] px-6 pt-20 pb-10 text-white">
+    <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 border-b border-white/10 pb-16 md:grid-cols-2 lg:grid-cols-4">
+      {/* School Info */}
+      <div className="space-y-6">
+        <h2 className="text-3xl font-black tracking-tight">
+          Sunshine Kids School
+        </h2>
+        <p className="max-w-xs leading-relaxed text-gray-400">
+          A joyful place where little minds grow, explore, and shine. We nurture
+          curiosity, creativity, and confidence every day.
+        </p>
 
-        <div className="flex gap-8">
-          <div>
-            <h5 className="mb-2 font-semibold">Explore</h5>
-            <ul className="space-y-1 text-sm">
-              <li>
-                <Link to="/" className="hover:underline">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link to="/about" className="hover:underline">
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link to="/academics" className="hover:underline">
-                  Academics
-                </Link>
-              </li>
-            </ul>
+        <div className="space-y-2 text-sm text-gray-400">
+          <div className="flex items-center gap-2">
+            <MapPin size={16} /> 12 Rainbow Street, Happy Town
           </div>
-          <div>
-            <h5 className="mb-2 font-semibold">Support</h5>
-            <ul className="space-y-1 text-sm">
-              <li>
-                <Link to="/admissions" className="hover:underline">
-                  Admissions
-                </Link>
-              </li>
-              <li>
-                <Link to="/calendar" className="hover:underline">
-                  Calendar
-                </Link>
-              </li>
-              <li>
-                <Link to="/news" className="hover:underline">
-                  News
-                </Link>
-              </li>
-            </ul>
+          <div className="flex items-center gap-2">
+            <Phone size={16} /> +234 800 123 4567
           </div>
         </div>
 
-        <div className="text-sm">
-          <h5 className="mb-2 font-semibold">Contact</h5>
-          <p>
-            123 Education Lane
-            <br />
-            Knowledge City, ST 12345
-          </p>
-          <p className="mt-2">
-            © {new Date().getFullYear()} [School Name]. All Rights Reserved.
-          </p>
+        <div className="flex gap-4 pt-2">
+          {[Facebook, Twitter, Mail].map((Icon, i) => (
+            <button
+              key={i}
+              aria-label="Social link"
+              className="rounded-xl bg-white/5 p-3 transition-all hover:scale-105 hover:bg-[#7c3aed]"
+            >
+              <Icon size={20} />
+            </button>
+          ))}
         </div>
       </div>
-    </footer>
-  );
-};
 
-export default Footer;
+      {/* Quick Links */}
+      <div>
+        <h4 className="mb-6 text-lg font-bold text-[#facc15]">School Life</h4>
+        <ul className="space-y-4 font-medium text-gray-400">
+          <li className="cursor-pointer transition-colors hover:text-white">
+            Admissions
+          </li>
+          <li className="cursor-pointer transition-colors hover:text-white">
+            Our Classes
+          </li>
+          <li className="cursor-pointer transition-colors hover:text-white">
+            School Calendar
+          </li>
+          <li className="cursor-pointer transition-colors hover:text-white">
+            Photo Gallery
+          </li>
+        </ul>
+      </div>
+
+      {/* Parent Resources */}
+      <div>
+        <h4 className="mb-6 text-lg font-bold text-[#facc15]">For Parents</h4>
+        <ul className="space-y-4 font-medium text-gray-400">
+          <li className="cursor-pointer transition-colors hover:text-white">
+            Parent Portal
+          </li>
+          <li className="cursor-pointer transition-colors hover:text-white">
+            School Policies
+          </li>
+          <li className="cursor-pointer transition-colors hover:text-white">
+            Uniform Guide
+          </li>
+          <li className="cursor-pointer transition-colors hover:text-white">
+            Contact Us
+          </li>
+        </ul>
+      </div>
+
+      {/* Newsletter */}
+      <div className="rounded-[2rem] border border-[#7c3aed]/20 bg-[#7c3aed]/10 p-8">
+        <h4 className="mb-4 text-lg font-bold">Stay Updated</h4>
+        <p className="mb-4 text-sm text-gray-300">
+          Subscribe to receive school news, event reminders, and important
+          announcements.
+        </p>
+
+        <div className="flex rounded-2xl bg-white p-1 shadow-inner">
+          <input
+            type="email"
+            placeholder="Parent email address"
+            className="w-full border-0 bg-transparent px-4 text-sm text-gray-900 outline-none"
+            aria-label="Email address"
+          />
+          <button
+            aria-label="Subscribe"
+            className="rounded-xl bg-[#ec4899] p-3 shadow-lg transition-all hover:bg-pink-600"
+          >
+            <Send size={18} />
+          </button>
+        </div>
+      </div>
+    </div>
+
+    {/* Bottom Bar */}
+    <div className="mx-auto mt-10 max-w-7xl text-center text-xs font-semibold tracking-wider text-gray-500">
+      © 2026 Sunshine Kids School. All rights reserved.
+    </div>
+  </footer>
+);
