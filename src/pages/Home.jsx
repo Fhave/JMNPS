@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { InfoCard } from "../components/InfoCard";
 import { EventItem } from "../components/EventItem";
 import {
@@ -9,15 +10,18 @@ import {
   Users,
   BookOpen,
 } from "lucide-react";
+import children from "../assets/images/children.jpg";
 
 export default function Home() {
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-screen bg-white">
       {/* 1. Hero Section */}
       <section className="relative flex h-[80vh] items-center overflow-hidden lg:h-[90vh]">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1583337130417-8e0427f460aa?auto=format&fit=crop&q=80"
+            src={children}
             className="h-full w-full object-cover brightness-50"
             alt="Happy Children at School"
           />
@@ -27,7 +31,7 @@ export default function Home() {
         <div className="relative z-10 mx-auto w-full max-w-7xl px-6 md:px-12">
           <div className="animate-in slide-in-from-left max-w-3xl space-y-6 duration-700">
             <span className="inline-flex items-center gap-2 rounded-full bg-[#facc15] px-4 py-2 text-xs font-black tracking-widest text-black uppercase">
-              <Award size={14} /> Best Kids’ School 2026
+              <Award size={14} /> Best Kids' School 2026
             </span>
             <h1 className="text-5xl leading-[1.05] font-black tracking-tight text-white md:text-6xl lg:text-7xl">
               Learning is <br />
@@ -41,12 +45,15 @@ export default function Home() {
               confident learners.
             </p>
             <div className="flex flex-col gap-4 pt-4 sm:flex-row">
-              <button className="rounded-2xl bg-[#ec4899] px-10 py-5 text-lg font-black text-white shadow-2xl transition-all hover:-translate-y-1 hover:bg-pink-600">
+              <button
+                className="cursor-pointer rounded-2xl bg-[#ec4899] px-10 py-5 text-lg font-black text-white shadow-2xl transition-all hover:-translate-y-1 hover:bg-pink-600"
+                onClick={() => navigate("/contact")}
+              >
                 Enroll Now
               </button>
-              <button className="flex items-center justify-center gap-3 rounded-2xl border border-white/30 bg-white/10 px-10 py-5 text-lg font-black text-white backdrop-blur-md transition-all hover:bg-white/20">
+              {/* <button className="flex items-center justify-center gap-3 rounded-2xl border border-white/30 bg-white/10 px-10 py-5 text-lg font-black text-white backdrop-blur-md transition-all hover:bg-white/20">
                 <Play size={20} fill="currentColor" /> Watch Video
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
@@ -72,7 +79,7 @@ export default function Home() {
           <div className="grid grid-cols-2 gap-6 lg:col-span-4 lg:grid-cols-1">
             <div className="flex flex-col items-center justify-center rounded-[2.5rem] bg-[#7c3aed] p-8 text-center text-white">
               <Users size={40} className="mb-4 text-[#facc15]" />
-              <div className="text-4xl font-black">450+</div>
+              <div className="text-4xl font-black">100+</div>
               <div className="text-sm font-bold tracking-widest uppercase opacity-80">
                 Happy Kids
               </div>
@@ -98,7 +105,13 @@ export default function Home() {
               </h2>
               <div className="h-2 w-24 rounded-full bg-[#ec4899]"></div>
             </div>
-            <button className="group flex items-center gap-3 rounded-2xl bg-white px-8 py-4 font-black shadow-sm transition-all hover:shadow-md">
+            <button
+              className="group flex items-center gap-3 rounded-2xl bg-white px-8 py-4 font-black shadow-sm transition-all hover:shadow-md"
+              onClick={() => {
+                navigate("/news");
+                window.scrollTo({ top: 0 });
+              }}
+            >
               Explore News{" "}
               <ArrowRight
                 size={20}
@@ -109,20 +122,20 @@ export default function Home() {
 
           <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
             <InfoCard
-              category="Fun Learning"
-              title="Art & Craft Day"
+              category="Programs"
+              title="Christmas Concert"
               description="Our little artists painted and created colorful masterpieces."
               image="https://images.unsplash.com/photo-1583337130417-8e0427f460aa?auto=format&fit=crop&q=80"
             />
             <InfoCard
-              category="Playtime"
-              title="Sports Fun"
+              category="Programs"
+              title="Valentine Day"
               description="Kids enjoyed friendly games of soccer and relay races."
               image="https://images.unsplash.com/photo-1596495577886-d920f00f785b?auto=format&fit=crop&q=80"
             />
             <InfoCard
-              category="Learning"
-              title="Storytelling Hour"
+              category="Programs"
+              title="Mothers' Day"
               description="Engaging stories that spark imagination and curiosity."
               image="https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&q=80"
             />
@@ -138,7 +151,7 @@ export default function Home() {
               Mark Your Calendars
             </h2>
             <p className="font-medium text-gray-500">
-              Don’t miss our fun activities, parent-teacher meetups, and holiday
+              Don't miss our activities, parent-teacher meetups, and holiday
               celebrations.
             </p>
             <div className="rounded-3xl border-2 border-[#7c3aed]/10 bg-[#f3e8ff] p-8">
@@ -149,7 +162,7 @@ export default function Home() {
                 Download the 2026 Academic Calendar for all activities and
                 holidays.
               </p>
-              <button className="text-sm font-black text-[#7c3aed] underline underline-offset-4">
+              <button className="cursor-pointer text-sm font-black text-[#7c3aed] underline underline-offset-4">
                 Download PDF
               </button>
             </div>
@@ -157,9 +170,9 @@ export default function Home() {
 
           <div className="space-y-6 lg:col-span-2">
             <EventItem
-              date="10"
-              month="FEB"
-              title="Welcome Back Party"
+              date="2"
+              month="APR"
+              title="Cultural Day"
               time="09:00 AM - 11:00 AM"
               location="School Playground"
             />

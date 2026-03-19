@@ -1,20 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import {
-  Menu,
-  X,
-  Search,
-  User,
-  GraduationCap,
-  ChevronRight,
-} from "lucide-react";
+import { Menu, X, ChevronRight } from "lucide-react";
 import Logo from "../assets/logo.png";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
-  // Determine active page based on current path
   const activePage =
     location.pathname === "/" ? "home" : location.pathname.slice(1);
 
@@ -26,7 +18,15 @@ export const Navbar = () => {
     { name: "Contact", id: "contact", path: "/contact" },
   ];
 
-  // Close on ESC key and lock scroll when drawer is open
+  // Scroll to top whenever route changes
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [location.pathname]);
+
+  // Close on ESC key and lock body scroll when drawer is open
   useEffect(() => {
     const handleEsc = (e) => {
       if (e.key === "Escape") setIsOpen(false);
@@ -46,7 +46,7 @@ export const Navbar = () => {
   return (
     <>
       {/* Top Navbar */}
-      <nav className="sticky top-0 z-50 flex items-center justify-between bg-[#7c3aed] px-4 py-4 text-white shadow-lg md:px-8">
+      <nav className="sticky top-0 z-50 flex items-center justify-between bg-[#7c3aed] px-4 py-4 text-white shadow-lg md:px-8 lg:px-12 xl:px-16">
         <div className="flex items-center gap-4">
           {/* Mobile Menu Button */}
           <button
@@ -59,15 +59,9 @@ export const Navbar = () => {
           </button>
 
           {/* Logo */}
-          <div className="flex cursor-pointer items-center gap-2">
-            <Link to="/" className="">
-              <img
-                src={Logo}
-                alt="Logo"
-                className="h-12 w-auto object-contain"
-              />
-            </Link>
-          </div>
+          <Link to="/" className="flex items-center gap-2">
+            <img src={Logo} alt="Logo" className="h-16 w-auto object-contain" />
+          </Link>
         </div>
 
         {/* Desktop Nav Links */}
@@ -84,26 +78,11 @@ export const Navbar = () => {
             </Link>
           ))}
         </div>
-
-        {/* Icons */}
-        {/* <div className="flex items-center gap-4">
-          <Search
-            size={22}
-            aria-label="Search"
-            className="cursor-pointer hover:opacity-80"
-          />
-          <div
-            aria-label="User profile"
-            className="cursor-pointer rounded-full bg-[#ec4899] p-2 transition-transform hover:scale-105"
-          >
-            <User size={20} fill="currentColor" />
-          </div>
-        </div> */}
       </nav>
 
       {/* Mobile Overlay */}
       <div
-        className={`fixed inset-0 z-60 bg-black/60 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
+        className={`fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
           isOpen ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
         onClick={() => setIsOpen(false)}
@@ -113,20 +92,13 @@ export const Navbar = () => {
       <aside
         role="dialog"
         aria-modal="true"
-        onClick={(e) => e.stopPropagation()}
-        className={`fixed top-0 left-0 z-70 h-full w-full max-w-xs transform bg-white shadow-2xl transition-transform duration-500 ease-out lg:hidden ${
+        className={`fixed top-0 left-0 z-[70] h-full w-full max-w-xs transform bg-white shadow-2xl transition-transform duration-500 ease-out lg:hidden ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
         <div className="p-6">
           <div className="mb-10 flex items-center justify-between">
-            <span className="flex items-center">
-              <img
-                src={Logo}
-                alt="Logo"
-                className="h-8 w-auto object-contain"
-              />
-            </span>
+            <img src={Logo} alt="Logo" className="h-16 w-auto object-contain" />
             <button
               onClick={() => setIsOpen(false)}
               aria-label="Close menu"

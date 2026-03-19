@@ -56,7 +56,7 @@ export default function About() {
           <img
             src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&q=80"
             alt="Happy students"
-            className="h-[600px] w-full object-cover"
+            className="h-150 w-full object-cover"
           />
         </div>
 
@@ -141,7 +141,7 @@ export default function About() {
         <div className="mb-16 text-center">
           <h2 className="mb-4 text-4xl font-black">Meet Our Team</h2>
           <p className="mx-auto max-w-2xl text-gray-500">
-            Passionate educators dedicated to your child’s growth and happiness.
+            Passionate educators dedicated to your child's growth and happiness.
           </p>
         </div>
 
@@ -169,7 +169,7 @@ export default function About() {
             },
           ].map((leader, i) => (
             <div key={i} className="group cursor-pointer">
-              <div className="relative mb-4 aspect-[4/5] overflow-hidden rounded-[2rem] shadow-lg transition-all group-hover:shadow-2xl">
+              <div className="relative mb-4 aspect-4/5 overflow-hidden rounded-4xl shadow-lg transition-all group-hover:shadow-2xl">
                 <img
                   src={leader.img}
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"

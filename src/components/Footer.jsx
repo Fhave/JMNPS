@@ -6,19 +6,28 @@ export const Footer = () => (
       {/* School Info */}
       <div className="space-y-6">
         <h2 className="text-3xl font-black tracking-tight">
-          Sunshine Kids School
+          JonMay Nursery and Primary Schools
         </h2>
         <p className="max-w-xs leading-relaxed text-gray-400">
           A joyful place where little minds grow, explore, and shine. We nurture
           curiosity, creativity, and confidence every day.
         </p>
 
-        <div className="space-y-2 text-sm text-gray-400">
-          <div className="flex items-center gap-2">
-            <MapPin size={16} /> 12 Rainbow Street, Happy Town
+        <div className="flex items-start">
+          <div className="flex items-center">
+            <MapPin size={14} className="mt-1 mr-2" />
           </div>
-          <div className="flex items-center gap-2">
-            <Phone size={16} /> +234 800 123 4567
+          <div className="text-sm text-gray-400">
+            2, Lateef Musa Street, Off LASU road, Opposite Winners' Chapel, Near
+            Akesan Bus-Stop, Akesan, Lagos
+          </div>
+        </div>
+        <div className="flex items-start">
+          <div className="flex items-center">
+            <Phone size={14} className="mt-1 mr-2" />
+          </div>
+          <div className="text-sm text-gray-400">
+            +234 803 303 9284, +234 803 302 2278
           </div>
         </div>
 
@@ -74,7 +83,7 @@ export const Footer = () => (
       </div>
 
       {/* Newsletter */}
-      <div className="rounded-[2rem] border border-[#7c3aed]/20 bg-[#7c3aed]/10 p-8">
+      <div className="mb-auto rounded-4xl border border-[#7c3aed]/20 bg-[#7c3aed]/10 p-8">
         <h4 className="mb-4 text-lg font-bold">Stay Updated</h4>
         <p className="mb-4 text-sm text-gray-300">
           Subscribe to receive school news, event reminders, and important
@@ -100,7 +109,7 @@ export const Footer = () => (
 
     {/* Bottom Bar */}
     <div className="mx-auto mt-10 max-w-7xl text-center text-xs font-semibold tracking-wider text-gray-500">
-      © 2026 Sunshine Kids School. All rights reserved.
+      © 2026 JonMay Nursery and Primary Schools. All rights reserved.
     </div>
   </footer>
 );
