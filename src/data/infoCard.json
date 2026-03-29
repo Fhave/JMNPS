@@ -1,0 +1,65 @@
+[
+  {
+    "category": "Programs",
+    "title": "Halloween Parade",
+    "date": "2025-10-31",
+    "description": "A spooky-sweet morning of costumes, treats, and a parade around the garden.",
+    "image": "https://images.unsplash.com/photo-1509558965875-b88c970410af?auto=format&fit=crop&q=80"
+  },
+  {
+    "category": "Programs",
+    "title": "Thanksgiving Feast",
+    "date": "2025-11-20",
+    "description": "Children shared a communal meal and learned about gratitude and friendship.",
+    "image": "https://images.unsplash.com/photo-1543362906-acfc16c67564?auto=format&fit=crop&q=80"
+  },
+  {
+    "category": "Programs",
+    "title": "Christmas Concert",
+    "date": "2025-12-15",
+    "description": "Our little artists painted and created colorful masterpieces.",
+    "image": "https://images.unsplash.com/photo-1583337130417-8e0427f460aa?auto=format&fit=crop&q=80"
+  },
+  {
+    "category": "Programs",
+    "title": "New Year Kick-off",
+    "date": "2026-01-05",
+    "description": "Setting little goals for the year ahead with crafts and sparkling juice toasts.",
+    "image": "https://images.unsplash.com/photo-1546271027-3367d98344f3?auto=format&fit=crop&q=80"
+  },
+  {
+    "category": "Programs",
+    "title": "Valentine Day",
+    "date": "2026-02-14",
+    "description": "Kids enjoyed friendly games of soccer and relay races.",
+    "image": "https://images.unsplash.com/photo-1596495577886-d920f00f785b?auto=format&fit=crop&q=80"
+  },
+  {
+    "category": "Programs",
+    "title": "Mothers' Day",
+    "date": "2026-03-15",
+    "description": "Engaging stories that spark imagination and curiosity.",
+    "image": "https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&q=80"
+  },
+  {
+    "category": "Programs",
+    "title": "Easter Egg Hunt",
+    "date": "2026-04-05",
+    "description": "An outdoor adventure searching for hidden surprises across the playground.",
+    "image": "https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?auto=format&fit=crop&q=80"
+  },
+  {
+    "category": "Programs",
+    "title": "Spring Garden Day",
+    "date": "2026-05-12",
+    "description": "Getting hands-on with nature as we plant sunflowers and learn about local bees.",
+    "image": "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&q=80"
+  },
+  {
+    "category": "Programs",
+    "title": "Summer Graduation",
+    "date": "2026-06-20",
+    "description": "Celebrating our graduates with a special ceremony and ice cream social.",
+    "image": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80"
+  }
+]

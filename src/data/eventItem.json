@@ -1,0 +1,23 @@
+[
+  {
+    "date": "2",
+    "month": "APR",
+    "title": "Cultural Day",
+    "time": "09:00 AM - 11:00 AM",
+    "location": "School Playground"
+  },
+  {
+    "date": "18",
+    "month": "APR",
+    "title": "Spring Art & Craft Fair",
+    "time": "10:00 AM - 02:00 PM",
+    "location": "Main Hall"
+  },
+  {
+    "date": "05",
+    "month": "APR",
+    "title": "Parent-Teacher Fun Day",
+    "time": "01:00 PM - 04:00 PM",
+    "location": "School Campus"
+  }
+]

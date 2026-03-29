@@ -53,14 +53,18 @@ export const Navbar = () => {
             onClick={() => setIsOpen(true)}
             aria-label="Open menu"
             aria-expanded={isOpen}
-            className="rounded-lg p-1 transition-colors hover:bg-white/10 lg:hidden"
+            className="cursor-pointer rounded-lg p-1 transition-colors hover:bg-white/10 lg:hidden"
           >
             <Menu size={28} />
           </button>
 
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
-            <img src={Logo} alt="Logo" className="h-16 w-auto object-contain" />
+            <img
+              src={Logo}
+              alt="Logo"
+              className="h-16 w-auto object-contain drop-shadow-[0_0_20px_#fff] filter"
+            />
           </Link>
         </div>
 
@@ -82,7 +86,7 @@ export const Navbar = () => {
 
       {/* Mobile Overlay */}
       <div
-        className={`fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
+        className={`fixed inset-0 z-60 bg-black/60 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
           isOpen ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
         onClick={() => setIsOpen(false)}
@@ -92,7 +96,7 @@ export const Navbar = () => {
       <aside
         role="dialog"
         aria-modal="true"
-        className={`fixed top-0 left-0 z-[70] h-full w-full max-w-xs transform bg-white shadow-2xl transition-transform duration-500 ease-out lg:hidden ${
+        className={`fixed top-0 left-0 z-70 h-full w-full max-w-xs transform bg-white shadow-2xl transition-transform duration-500 ease-out lg:hidden ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -102,7 +106,7 @@ export const Navbar = () => {
             <button
               onClick={() => setIsOpen(false)}
               aria-label="Close menu"
-              className="rounded-xl bg-gray-100 p-2 hover:bg-gray-200"
+              className="cursor-pointer rounded-xl bg-gray-100 p-2 hover:bg-gray-200"
             >
               <X size={24} />
             </button>

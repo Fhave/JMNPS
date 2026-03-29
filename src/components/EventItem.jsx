@@ -3,8 +3,8 @@ import { ArrowRight, Clock, MapPin } from "lucide-react";
 // Event Card
 export const EventItem = ({ date, month, title, time, location }) => {
   return (
-    <div className="group flex cursor-pointer flex-col items-start gap-6 rounded-[2rem] border border-gray-100 bg-white p-6 shadow-sm transition-all hover:shadow-xl sm:flex-row sm:items-center">
-      <div className="min-w-[90px] rounded-2xl bg-[#f3e8ff] px-6 py-4 text-center transition-colors group-hover:bg-[#7c3aed]">
+    <div className="group flex cursor-pointer flex-col items-start gap-6 rounded-4xl border border-gray-100 bg-white p-6 shadow-sm transition-all hover:shadow-xl sm:flex-row sm:items-center">
+      <div className="min-w-22.5 rounded-2xl bg-[#f3e8ff] px-6 py-4 text-center transition-colors group-hover:bg-[#7c3aed]">
         <div className="text-3xl leading-none font-black text-[#7c3aed] group-hover:text-white">
           {date}
         </div>
@@ -23,9 +23,9 @@ export const EventItem = ({ date, month, title, time, location }) => {
           </span>
         </div>
       </div>
-      <div className="hidden translate-x-[-10px] text-[#7c3aed] opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100 md:block">
+      {/* <div className="hidden -translate-x-2.5 text-[#7c3aed] opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100 md:block">
         <ArrowRight size={28} />
-      </div>
+      </div> */}
     </div>
   );
 };

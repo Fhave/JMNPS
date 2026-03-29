@@ -105,9 +105,9 @@ export default function About() {
             <p className="mb-8 text-gray-500">
               From humble beginnings to a vibrant learning community.
             </p>
-            <button className="flex items-center gap-2 rounded-2xl bg-[#7c3aed] px-8 py-4 font-black text-white shadow-lg">
+            {/* <button className="flex items-center gap-2 rounded-2xl bg-[#7c3aed] px-8 py-4 font-black text-white shadow-lg cursor-pointer">
               View School Story <ChevronRight size={20} />
-            </button>
+            </button> */}
           </div>
 
           <div className="lg:col-span-2">

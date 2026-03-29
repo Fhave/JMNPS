@@ -9,8 +9,11 @@ import {
   Award,
   Users,
   BookOpen,
+  Download,
 } from "lucide-react";
 import children from "../assets/images/children.jpg";
+import infoCardData from "../data/infoCard.json";
+import eventItemData from "../data/eventItem.json";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -121,24 +124,20 @@ export default function Home() {
           </div>
 
           <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
-            <InfoCard
-              category="Programs"
-              title="Christmas Concert"
-              description="Our little artists painted and created colorful masterpieces."
-              image="https://images.unsplash.com/photo-1583337130417-8e0427f460aa?auto=format&fit=crop&q=80"
-            />
-            <InfoCard
-              category="Programs"
-              title="Valentine Day"
-              description="Kids enjoyed friendly games of soccer and relay races."
-              image="https://images.unsplash.com/photo-1596495577886-d920f00f785b?auto=format&fit=crop&q=80"
-            />
-            <InfoCard
-              category="Programs"
-              title="Mothers' Day"
-              description="Engaging stories that spark imagination and curiosity."
-              image="https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&q=80"
-            />
+            {infoCardData
+              .filter((item) => new Date(item.date) <= new Date())
+              .sort((a, b) => new Date(a.date) - new Date(b.date))
+              .slice(-3)
+              .map((item, index) => (
+                <InfoCard
+                  key={`${item.date}-${index}`}
+                  category={item.category}
+                  title={item.title}
+                  description={item.description}
+                  image={item.image}
+                  path={item.path}
+                />
+              ))}
           </div>
         </div>
       </section>
@@ -147,49 +146,63 @@ export default function Home() {
       <section className="mx-auto max-w-7xl px-6 py-24">
         <div className="grid items-start gap-16 lg:grid-cols-3">
           <div className="space-y-6 lg:col-span-1">
-            <h2 className="text-4xl font-black tracking-tighter">
+            <h2 className="text-4xl font-black tracking-tighter text-gray-900">
               Mark Your Calendars
             </h2>
             <p className="font-medium text-gray-500">
               Don't miss our activities, parent-teacher meetups, and holiday
               celebrations.
             </p>
-            <div className="rounded-3xl border-2 border-[#7c3aed]/10 bg-[#f3e8ff] p-8">
+
+            <div className="rounded-3xl border-2 border-[#7c3aed]/10 bg-[#f3e8ff] p-8 transition-transform hover:scale-[1.02]">
               <h4 className="mb-2 font-bold text-[#7c3aed]">
                 Full School Year
               </h4>
-              <p className="mb-4 text-sm text-purple-900/60">
+              <p className="mb-4 text-sm leading-relaxed text-purple-900/60">
                 Download the 2026 Academic Calendar for all activities and
                 holidays.
               </p>
-              <button className="cursor-pointer text-sm font-black text-[#7c3aed] underline underline-offset-4">
+
+              <a
+                href="/documents/2026-academic-calendar.pdf"
+                download="2026-School-Calendar.pdf"
+                className="inline-flex cursor-pointer items-center gap-2 text-sm font-black text-[#7c3aed] underline underline-offset-4 transition-colors hover:text-[#6d28d9]"
+              >
+                <Download size={16} />
                 Download PDF
-              </button>
+              </a>
             </div>
           </div>
 
           <div className="space-y-6 lg:col-span-2">
-            <EventItem
-              date="2"
-              month="APR"
-              title="Cultural Day"
-              time="09:00 AM - 11:00 AM"
-              location="School Playground"
-            />
-            <EventItem
-              date="18"
-              month="MAR"
-              title="Spring Art & Craft Fair"
-              time="10:00 AM - 02:00 PM"
-              location="Main Hall"
-            />
-            <EventItem
-              date="05"
-              month="APR"
-              title="Parent-Teacher Fun Day"
-              time="01:00 PM - 04:00 PM"
-              location="School Campus"
-            />
+            {eventItemData
+              .filter((item) => {
+                // Assuming item.year exists. If not, we'll default to 2026.
+                const year = item.year || 2026;
+                const eventDate = new Date(
+                  `${item.month} ${item.date}, ${year}`,
+                );
+                return eventDate >= new Date().setHours(0, 0, 0, 0); // Include today
+              })
+              .sort((a, b) => {
+                const dateA = new Date(
+                  `${a.month} ${a.date}, ${a.year || 2026}`,
+                );
+                const dateB = new Date(
+                  `${b.month} ${b.date}, ${b.year || 2026}`,
+                );
+                return dateA - dateB; // Sort soonest to furthest
+              })
+              .map((item, index) => (
+                <EventItem
+                  key={`${item.date}-${item.month}-${index}`}
+                  date={item.date}
+                  month={item.month}
+                  title={item.title}
+                  time={item.time}
+                  location={item.location}
+                />
+              ))}
           </div>
         </div>
       </section>
