@@ -177,12 +177,11 @@ export default function Home() {
           <div className="space-y-6 lg:col-span-2">
             {eventItemData
               .filter((item) => {
-                // Assuming item.year exists. If not, we'll default to 2026.
                 const year = item.year || 2026;
                 const eventDate = new Date(
                   `${item.month} ${item.date}, ${year}`,
                 );
-                return eventDate >= new Date().setHours(0, 0, 0, 0); // Include today
+                return eventDate >= new Date().setHours(0, 0, 0, 0);
               })
               .sort((a, b) => {
                 const dateA = new Date(
@@ -191,7 +190,7 @@ export default function Home() {
                 const dateB = new Date(
                   `${b.month} ${b.date}, ${b.year || 2026}`,
                 );
-                return dateA - dateB; // Sort soonest to furthest
+                return dateA - dateB;
               })
               .map((item, index) => (
                 <EventItem

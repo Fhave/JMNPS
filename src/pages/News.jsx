@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   Calendar,
   User,
@@ -10,6 +10,8 @@ import {
   Bell,
   TrendingUp,
   Newspaper,
+  ChevronsRight,
+  ChevronsLeft,
 } from "lucide-react";
 
 const CategoryBadge = ({ children, active, onClick }) => (
@@ -102,17 +104,44 @@ const NewsCard = ({
   </article>
 );
 
+const categories = [
+  "All",
+  "Class Activities",
+  "School Events",
+  "Sports Day",
+  "Creative Arts",
+  "Parent Updates",
+];
+
 export default function News() {
   const [activeCategory, setActiveCategory] = useState("All");
 
-  const categories = [
-    "All",
-    "Class Activities",
-    "School Events",
-    "Sports Day",
-    "Creative Arts",
-    "Parent Updates",
-  ];
+  const scrollRef = useRef(null);
+  const [showLeftArrow, setShowLeftArrow] = useState(false);
+  const [showRightArrow, setShowRightArrow] = useState(true);
+
+  const checkScroll = () => {
+    if (scrollRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+      setShowLeftArrow(scrollLeft > 5);
+      setShowRightArrow(scrollLeft + clientWidth < scrollWidth - 5);
+    }
+  };
+
+  useEffect(() => {
+    checkScroll();
+    window.addEventListener("resize", checkScroll);
+    return () => window.removeEventListener("resize", checkScroll);
+  }, []);
+
+  const handleCategoryClick = (cat, e) => {
+    setActiveCategory(cat);
+    e.currentTarget.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "start",
+    });
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -150,16 +179,45 @@ export default function News() {
           </div>
 
           {/* Categories */}
-          <div className="no-scrollbar mx-auto mt-12 flex max-w-7xl gap-3 overflow-x-auto pb-2">
-            {categories.map((cat) => (
-              <CategoryBadge
-                key={cat}
-                active={activeCategory === cat}
-                onClick={() => setActiveCategory(cat)}
-              >
-                {cat}
-              </CategoryBadge>
-            ))}
+          <div className="mx-auto mt-12 flex max-w-7xl items-center gap-4 px-4">
+            {/* Left Indicator */}
+            <div
+              className={`transition-opacity duration-300 ${showLeftArrow ? "opacity-100" : "opacity-0"}`}
+            >
+              <ChevronsLeft
+                size={24}
+                className="animate-pulse text-[#7c3aed]"
+              />
+            </div>
+
+            {/* The Scrollable Area */}
+            <div
+              ref={scrollRef}
+              onScroll={checkScroll}
+              className="no-scrollbar flex flex-1 gap-3 overflow-x-auto scroll-smooth py-2"
+            >
+              {categories.map((cat) => (
+                <div
+                  key={cat}
+                  className="shrink-0 cursor-pointer"
+                  onClick={(e) => handleCategoryClick(cat, e)}
+                >
+                  <CategoryBadge active={activeCategory === cat}>
+                    {cat}
+                  </CategoryBadge>
+                </div>
+              ))}
+            </div>
+
+            {/* Right Indicator */}
+            <div
+              className={`transition-opacity duration-300 ${showRightArrow ? "opacity-100" : "opacity-0"}`}
+            >
+              <ChevronsRight
+                size={24}
+                className="animate-pulse text-[#7c3aed]"
+              />
+            </div>
           </div>
         </section>
 

@@ -18,7 +18,6 @@ export const Navbar = () => {
     { name: "Contact", id: "contact", path: "/contact" },
   ];
 
-  // Scroll to top whenever route changes
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -26,7 +25,6 @@ export const Navbar = () => {
     });
   }, [location.pathname]);
 
-  // Close on ESC key and lock body scroll when drawer is open
   useEffect(() => {
     const handleEsc = (e) => {
       if (e.key === "Escape") setIsOpen(false);

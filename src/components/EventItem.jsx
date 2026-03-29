@@ -1,6 +1,5 @@
 import { ArrowRight, Clock, MapPin } from "lucide-react";
 
-// Event Card
 export const EventItem = ({ date, month, title, time, location }) => {
   return (
     <div className="group flex cursor-pointer flex-col items-start gap-6 rounded-4xl border border-gray-100 bg-white p-6 shadow-sm transition-all hover:shadow-xl sm:flex-row sm:items-center">
