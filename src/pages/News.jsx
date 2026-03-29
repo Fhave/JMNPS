@@ -179,7 +179,7 @@ export default function News() {
           </div>
 
           {/* Categories */}
-          <div className="mx-auto mt-12 flex max-w-7xl items-center gap-4 px-4">
+          <div className="mx-auto mt-12 flex max-w-7xl items-center">
             {/* Left Indicator */}
             <div
               className={`transition-opacity duration-300 ${showLeftArrow ? "opacity-100" : "opacity-0"}`}
