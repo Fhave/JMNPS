@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import {
   Phone,
   Mail,
@@ -23,11 +23,41 @@ const ContactCard = ({ icon: Icon, title, detail, sub }) => (
 );
 
 export default function Contact() {
-  const [submitted, setSubmitted] = React.useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    const SCRIPT_URL = import.meta.env.VITE_NEWSLETTER_URL;
+
+    const payload = {
+      type: "inquiry",
+      name: formData.name,
+      email: formData.email,
+      subject: formData.subject,
+      message: formData.message,
+    };
+
+    try {
+      await fetch(SCRIPT_URL, {
+        method: "POST",
+        body: JSON.stringify(payload),
+      });
+      setSubmitted(true);
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+    } catch {
+      alert("Submission failed. Please try again.");
+    }
   };
 
   return (
@@ -66,6 +96,10 @@ export default function Contact() {
                       <input
                         required
                         type="text"
+                        value={formData.name}
+                        onChange={(e) =>
+                          setFormData({ ...formData, name: e.target.value })
+                        }
                         placeholder="Jane Smith"
                         className="w-full rounded-2xl border-2 border-transparent bg-gray-50 p-5 transition-all outline-none focus:border-[#7c3aed] focus:bg-white"
                       />
@@ -77,6 +111,10 @@ export default function Contact() {
                       <input
                         required
                         type="email"
+                        value={formData.email}
+                        onChange={(e) =>
+                          setFormData({ ...formData, email: e.target.value })
+                        }
                         placeholder="parent@email.com"
                         className="w-full rounded-2xl border-2 border-transparent bg-gray-50 p-5 transition-all outline-none focus:border-[#7c3aed] focus:bg-white"
                       />
@@ -87,7 +125,13 @@ export default function Contact() {
                     <label className="ml-2 text-sm font-black tracking-widest text-gray-400 uppercase">
                       Inquiry Type
                     </label>
-                    <select className="w-full appearance-none rounded-2xl border-2 border-transparent bg-gray-50 p-5 transition-all outline-none focus:border-[#7c3aed] focus:bg-white">
+                    <select
+                      value={formData.subject}
+                      onChange={(e) =>
+                        setFormData({ ...formData, subject: e.target.value })
+                      }
+                      className="w-full appearance-none rounded-2xl border-2 border-transparent bg-gray-50 p-5 transition-all outline-none focus:border-[#7c3aed] focus:bg-white"
+                    >
                       <option>Admission Information</option>
                       <option>Schedule a School Tour</option>
                       <option>Academic Questions</option>
@@ -102,6 +146,10 @@ export default function Contact() {
                     <textarea
                       required
                       rows="5"
+                      value={formData.message}
+                      onChange={(e) =>
+                        setFormData({ ...formData, message: e.target.value })
+                      }
                       placeholder="Tell us how we can help your child..."
                       className="w-full resize-none rounded-2xl border-2 border-transparent bg-gray-50 p-5 transition-all outline-none focus:border-[#7c3aed] focus:bg-white"
                     ></textarea>

@@ -10,6 +10,7 @@ import {
   Users,
   BookOpen,
   Download,
+  Target,
 } from "lucide-react";
 import children from "../assets/images/children.jpg";
 import infoCardData from "../data/infoCard.json";
@@ -65,20 +66,54 @@ export default function Home() {
       {/* 2. Mission & Quick Stats */}
       <section className="mx-auto max-w-7xl px-6 py-24">
         <div className="grid gap-6 lg:grid-cols-12">
-          <div className="flex flex-col justify-center rounded-[3rem] border border-gray-100 bg-white p-8 shadow-2xl shadow-purple-100/50 md:p-16 lg:col-span-8">
-            <div className="mb-8 flex items-center gap-3 text-xl font-black text-[#7c3aed]">
-              <Sparkles className="text-[#facc15]" size={32} />
-              OUR MISSION
+          {/* Combined Vision & Mission Card */}
+          <div className="grid overflow-hidden rounded-[3.5rem] border border-gray-100 bg-white shadow-2xl shadow-purple-200/40 lg:col-span-8 lg:grid-cols-2 lg:divide-x lg:divide-gray-100">
+            {/* Vision Section */}
+            <div className="relative flex flex-col justify-center p-10 transition-colors hover:bg-purple-50/30 md:p-16">
+              <div className="absolute top-0 left-0 h-24 w-24 bg-gradient-to-br from-purple-100/50 to-transparent blur-3xl" />
+              <div className="mb-6 flex items-center gap-3">
+                <div className="rounded-2xl bg-purple-100 p-2 text-purple-600">
+                  <Sparkles size={24} />
+                </div>
+                <span className="text-sm font-black tracking-[0.2em] text-purple-600 uppercase">
+                  Our Vision
+                </span>
+              </div>
+              <blockquote className="relative">
+                <p className="font-serif text-3xl leading-snug text-gray-900 italic md:text-4xl">
+                  "To raise a{" "}
+                  <span className="font-bold text-purple-600 not-italic">
+                    total child
+                  </span>{" "}
+                  who will be ambitious and God-fearing"
+                </p>
+              </blockquote>
             </div>
-            <p className="font-serif text-3xl leading-[1.2] text-gray-800 italic md:text-5xl">
-              "We make learning{" "}
-              <span className="font-sans font-black text-[#7c3aed] not-italic">
-                exciting
-              </span>
-              , playful, and full of wonder."
-            </p>
+
+            {/* Mission Section */}
+            <div className="relative flex flex-col justify-center p-10 transition-colors hover:bg-pink-50/30 md:p-16">
+              <div className="absolute right-0 bottom-0 h-24 w-24 bg-gradient-to-tl from-pink-100/50 to-transparent blur-3xl" />
+              <div className="mb-6 flex items-center gap-3">
+                <div className="rounded-2xl bg-pink-100 p-2 text-pink-600">
+                  <Target size={24} />
+                </div>
+                <span className="text-sm font-black tracking-[0.2em] text-pink-600 uppercase">
+                  Our Mission
+                </span>
+              </div>
+              <blockquote className="relative">
+                <p className="font-serif text-3xl leading-snug text-gray-900 italic md:text-4xl">
+                  "To promote qualitative and{" "}
+                  <span className="font-bold text-pink-600 not-italic">
+                    ambitious
+                  </span>{" "}
+                  educational guide and transformational mind"
+                </p>
+              </blockquote>
+            </div>
           </div>
 
+          {/* Quick Stats Column */}
           <div className="grid grid-cols-2 gap-6 lg:col-span-4 lg:grid-cols-1">
             <div className="flex flex-col items-center justify-center rounded-[2.5rem] bg-[#7c3aed] p-8 text-center text-white">
               <Users size={40} className="mb-4 text-[#facc15]" />
