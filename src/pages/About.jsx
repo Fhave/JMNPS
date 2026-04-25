@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 import { ValueCard } from "../components/ValueCard";
 import { TimelineItem } from "../components/TimelineItem";
-import timelineData from "../data/timelineItem";
+import timelineData from "../data/timelineItem.json";
 
 export default function About() {
   return (
