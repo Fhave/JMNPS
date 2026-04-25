@@ -7,32 +7,9 @@ import {
   Award,
   ChevronRight,
 } from "lucide-react";
-
-const ValueCard = ({ icon: Icon, title, desc }) => (
-  <div className="rounded-[2.5rem] border border-gray-100 bg-white p-8 shadow-xl shadow-purple-50 transition-transform hover:-translate-y-2">
-    <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#f3e8ff] text-[#7c3aed]">
-      {Icon && <Icon size={28} />}
-    </div>
-    <h3 className="mb-3 text-xl font-bold">{title}</h3>
-    <p className="text-sm leading-relaxed text-gray-500">{desc}</p>
-  </div>
-);
-
-const TimelineItem = ({ year, title, desc, isLast }) => (
-  <div className="group flex gap-8">
-    <div className="flex flex-col items-center">
-      <div className="h-4 w-4 rounded-full bg-[#7c3aed] ring-4 ring-purple-100" />
-      {!isLast && (
-        <div className="h-full w-0.5 bg-gray-100 transition-colors group-hover:bg-purple-200" />
-      )}
-    </div>
-    <div className="pb-12">
-      <span className="text-lg font-black text-[#ec4899]">{year}</span>
-      <h4 className="mt-1 mb-2 text-2xl font-bold text-gray-900">{title}</h4>
-      <p className="max-w-md text-gray-500">{desc}</p>
-    </div>
-  </div>
-);
+import { ValueCard } from "../components/ValueCard";
+import { TimelineItem } from "../components/TimelineItem";
+import timelineData from "../data/timelineItem";
 
 export default function About() {
   return (
@@ -44,8 +21,8 @@ export default function About() {
             Growing Little <span className="text-[#facc15]">Leaders</span>
           </h1>
           <p className="mx-auto max-w-2xl text-xl leading-relaxed text-gray-300">
-            For over 20 years, Sunshine Kids School has been a joyful place
-            where children learn, play, and build confidence every single day.
+            For over 8 years, JonMay Schools has been a joyful place where
+            children learn, play, and build confidence every single day.
           </p>
         </div>
       </section>
@@ -111,27 +88,15 @@ export default function About() {
           </div>
 
           <div className="lg:col-span-2">
-            <TimelineItem
-              year="2005"
-              title="Our First Classroom"
-              desc="We opened our doors with 25 bright and curious children."
-            />
-            <TimelineItem
-              year="2012"
-              title="New Play Area"
-              desc="A colorful playground was built for fun and active learning."
-            />
-            <TimelineItem
-              year="2018"
-              title="Expanded Learning"
-              desc="Added music, art, and early STEM programs."
-            />
-            <TimelineItem
-              year="2024"
-              title="Growing Together"
-              desc="Now serving over 400 happy students each year."
-              isLast
-            />
+            {timelineData.map((item, index) => (
+              <TimelineItem
+                key={index}
+                year={item.year}
+                title={item.title}
+                desc={item.desc}
+                isLast={index === timelineData.length - 1}
+              />
+            ))}
           </div>
         </div>
       </section>
