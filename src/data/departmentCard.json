@@ -1,0 +1,44 @@
+[
+  {
+    "title": "Early Literacy",
+    "iconName": "BookOpen",
+    "color": "bg-blue-500",
+    "subjects": ["Phonics", "Reading", "Storytelling", "Creative Writing"],
+    "image": "https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&q=80"
+  },
+  {
+    "title": "Numeracy & Logic",
+    "iconName": "Calculator",
+    "color": "bg-green-500",
+    "subjects": ["Counting", "Basic Math", "Problem Solving", "Patterns"],
+    "image": "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80"
+  },
+  {
+    "title": "Creative Arts",
+    "iconName": "Palette",
+    "color": "bg-pink-500",
+    "subjects": ["Drawing", "Painting", "Crafts", "Imagination Play"],
+    "image": "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80"
+  },
+  {
+    "title": "Music & Movement",
+    "iconName": "Music",
+    "color": "bg-purple-600",
+    "subjects": ["Singing", "Dance", "Rhythm", "Drama"],
+    "image": "https://images.unsplash.com/photo-1514525253361-bee8718a74a2?auto=format&fit=crop&q=80"
+  },
+  {
+    "title": "Social Studies",
+    "iconName": "Globe",
+    "color": "bg-orange-500",
+    "subjects": ["Community", "Culture", "Citizenship", "Environment"],
+    "image": "https://images.unsplash.com/photo-1491841573634-28140fc7ced7?auto=format&fit=crop&q=80"
+  },
+  {
+    "title": "Languages",
+    "iconName": "Languages",
+    "color": "bg-amber-500",
+    "subjects": ["English", "French Basics", "Conversation Skills"],
+    "image": "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&q=80"
+  }
+]
