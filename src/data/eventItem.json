@@ -1,23 +1,44 @@
 [
   {
-    "date": "2",
+    "date": "06",
     "month": "APR",
-    "title": "Cultural Day",
-    "time": "09:00 AM - 11:00 AM",
-    "location": "School Playground"
+    "title": "Easter Celebration",
+    "time": "09:00 AM - 12:00 PM",
+    "location": "School Garden"
   },
   {
-    "date": "18",
+    "date": "22",
     "month": "APR",
-    "title": "Spring Art & Craft Fair",
-    "time": "10:00 AM - 02:00 PM",
+    "title": "Earth Day Workshop",
+    "time": "10:00 AM - 01:00 PM",
+    "location": "Science Lab"
+  },
+  {
+    "date": "10",
+    "month": "MAY",
+    "title": "Mothers' Day Breakfast",
+    "time": "08:30 AM - 10:30 AM",
     "location": "Main Hall"
   },
   {
-    "date": "05",
-    "month": "APR",
-    "title": "Parent-Teacher Fun Day",
-    "time": "01:00 PM - 04:00 PM",
-    "location": "School Campus"
+    "date": "27",
+    "month": "MAY",
+    "title": "Children's Day Carnival",
+    "time": "09:00 AM - 03:00 PM",
+    "location": "School Playground"
+  },
+  {
+    "date": "12",
+    "month": "JUN",
+    "title": "Sports Day & Inter-house",
+    "time": "08:00 AM - 02:00 PM",
+    "location": "Sports Complex"
+  },
+  {
+    "date": "25",
+    "month": "JUN",
+    "title": "End of Session Graduation",
+    "time": "11:00 AM - 03:00 PM",
+    "location": "Assembly Hall"
   }
 ]

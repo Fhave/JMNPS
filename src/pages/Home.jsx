@@ -227,6 +227,7 @@ export default function Home() {
                 );
                 return dateA - dateB;
               })
+              .slice(0, 3)
               .map((item, index) => (
                 <EventItem
                   key={`${item.date}-${item.month}-${index}`}
