@@ -227,20 +227,17 @@ export default function Contact() {
 
         {/* 3. Map Section */}
         <section className="mx-auto max-w-7xl px-6 pb-24">
-          <div className="relative h-[500px] w-full overflow-hidden rounded-[3.5rem] border border-gray-100 bg-gray-100 shadow-inner">
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-gray-400">
-              <MapPin size={64} className="mb-4 opacity-20" />
-              <p className="font-bold italic">Campus Location Map Loading...</p>
-            </div>
-
-            <div className="absolute top-8 left-8 rounded-3xl border border-gray-50 bg-white p-6 shadow-2xl">
-              <h4 className="font-black text-gray-900">
-                Little Stars Primary School
-              </h4>
-              <p className="text-xs font-bold text-gray-400">
-                School Tours: 9:00am - 2:00pm
-              </p>
-            </div>
+          <div className="relative h-125 w-full overflow-hidden rounded-[3.5rem] border border-gray-100 bg-gray-100 shadow-2xl">
+            {/* Google Maps Iframe */}
+            <iframe
+              src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=Jonmay Schools, Akesan, Lagos&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+              className="absolute inset-0 h-full w-full contrast-[1.1] grayscale-[0.2]"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Little Stars Primary School Location"
+            ></iframe>
           </div>
         </section>
       </div>
