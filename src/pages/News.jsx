@@ -1,8 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useMemo } from "react";
 import {
-  Calendar,
-  User,
-  ArrowRight,
   Filter,
   Search,
   Share2,
@@ -13,96 +10,9 @@ import {
   ChevronsRight,
   ChevronsLeft,
 } from "lucide-react";
-
-const CategoryBadge = ({ children, active, onClick }) => (
-  <button
-    onClick={onClick}
-    className={`rounded-full border px-6 py-2 text-sm font-bold whitespace-nowrap transition-all ${
-      active
-        ? "border-[#7c3aed] bg-[#7c3aed] text-white shadow-lg shadow-purple-200"
-        : "border-gray-100 bg-white text-gray-500 hover:border-purple-200"
-    }`}
-  >
-    {children}
-  </button>
-);
-
-const NewsCard = ({
-  category,
-  date,
-  title,
-  author,
-  image,
-  featured = false,
-}) => (
-  <article
-    className={`group cursor-pointer ${featured ? "lg:col-span-2" : ""}`}
-  >
-    <div
-      className={`overflow-hidden rounded-[2.5rem] border border-gray-100 bg-white transition-all duration-500 hover:shadow-2xl ${
-        featured ? "flex h-full flex-col lg:flex-row" : ""
-      }`}
-    >
-      <div
-        className={`relative overflow-hidden ${
-          featured ? "h-64 lg:h-auto lg:w-1/2" : "h-64"
-        }`}
-      >
-        <img
-          src={image}
-          alt={title}
-          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-        />
-        <div className="absolute top-4 left-4 rounded-full bg-white/90 px-4 py-1.5 text-[10px] font-black tracking-widest text-[#ec4899] uppercase backdrop-blur-md">
-          {category}
-        </div>
-      </div>
-
-      <div
-        className={`flex flex-col justify-center p-8 ${
-          featured ? "lg:w-1/2" : ""
-        }`}
-      >
-        <div className="mb-4 flex items-center gap-4 text-xs font-bold text-gray-400">
-          <span className="flex items-center gap-1">
-            <Calendar size={14} /> {date}
-          </span>
-          <span className="flex items-center gap-1">
-            <User size={14} /> By {author}
-          </span>
-        </div>
-        <h3
-          className={`${
-            featured ? "text-3xl lg:text-4xl" : "text-xl"
-          } mb-4 leading-tight font-black transition-colors group-hover:text-[#7c3aed]`}
-        >
-          {title}
-        </h3>
-        <p className="mb-6 line-clamp-3 text-sm leading-relaxed text-gray-500">
-          Stay updated with heartwarming stories, exciting activities, and
-          important announcements from our vibrant school family.
-        </p>
-        <div className="mt-auto flex items-center justify-between">
-          <button className="group/btn flex items-center gap-2 text-sm font-black tracking-wider text-[#7c3aed] uppercase">
-            Read More
-            <ArrowRight
-              size={16}
-              className="transition-transform group-hover/btn:translate-x-2"
-            />
-          </button>
-          <div className="flex gap-2">
-            <button className="rounded-full p-2 text-gray-400 hover:bg-gray-50">
-              <Share2 size={18} />
-            </button>
-            <button className="rounded-full p-2 text-gray-400 hover:bg-gray-50">
-              <Bookmark size={18} />
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </article>
-);
+import { NewsCard } from "../components/NewsCard";
+import { CategoryBadge } from "../components/CategoryBadge";
+import newsData from "../data/newsCard.json";
 
 const categories = [
   "All",
@@ -115,10 +25,29 @@ const categories = [
 
 export default function News() {
   const [activeCategory, setActiveCategory] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
 
   const scrollRef = useRef(null);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
+
+  const filteredNews = useMemo(() => {
+    const now = new Date();
+
+    return newsData
+      .filter((item) => {
+        const eventDate = new Date(item.date);
+        const matchesCategory =
+          activeCategory === "All" || item.category === activeCategory;
+        const matchesSearch = item.title
+          .toLowerCase()
+          .includes(searchQuery.toLowerCase());
+
+        return matchesCategory && matchesSearch && eventDate <= now;
+      })
+      .sort((a, b) => new Date(b.date) - new Date(a.date))
+      .slice(0, 5);
+  }, [activeCategory, searchQuery]);
 
   const checkScroll = () => {
     if (scrollRef.current) {
@@ -146,7 +75,7 @@ export default function News() {
   return (
     <div className="min-h-screen bg-white">
       <div className="animate-in fade-in min-h-screen bg-gray-50 duration-700">
-        {/* 1. Page Title & Search */}
+        {/* 1. Header & Controls */}
         <section className="border-b border-gray-100 bg-white px-6 pt-20 pb-10">
           <div className="mx-auto flex max-w-7xl flex-col justify-between gap-8 md:flex-row md:items-end">
             <div className="space-y-4">
@@ -168,6 +97,8 @@ export default function News() {
                 />
                 <input
                   type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search updates..."
                   className="w-full rounded-2xl border border-transparent bg-gray-50 py-4 pr-6 pl-12 transition-all outline-none focus:border-[#7c3aed] md:w-80"
                 />
@@ -180,7 +111,6 @@ export default function News() {
 
           {/* Categories */}
           <div className="mx-auto mt-12 flex max-w-7xl items-center">
-            {/* Left Indicator */}
             <div
               className={`transition-opacity duration-300 ${showLeftArrow ? "opacity-100" : "opacity-0"}`}
             >
@@ -190,7 +120,6 @@ export default function News() {
               />
             </div>
 
-            {/* The Scrollable Area */}
             <div
               ref={scrollRef}
               onScroll={checkScroll}
@@ -209,7 +138,6 @@ export default function News() {
               ))}
             </div>
 
-            {/* Right Indicator */}
             <div
               className={`transition-opacity duration-300 ${showRightArrow ? "opacity-100" : "opacity-0"}`}
             >
@@ -226,36 +154,34 @@ export default function News() {
           <div className="grid gap-10 lg:grid-cols-3">
             {/* Main Feed */}
             <div className="space-y-10 lg:col-span-2">
-              <NewsCard
-                featured
-                category="School Events"
-                date="March 12, 2026"
-                author="School Admin"
-                title="Annual Cultural Day Celebration Brings Color and Joy to Campus"
-                image="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80"
-              />
+              {filteredNews.length > 0 ? (
+                <>
+                  {/* 1. Show the most recent item as Featured if it exists */}
+                  {filteredNews
+                    .filter((n) => n.featured)
+                    .map((item) => (
+                      <NewsCard key={item.id} {...item} />
+                    ))}
 
-              <div className="grid gap-8 md:grid-cols-2">
-                <NewsCard
-                  category="Sports Day"
-                  date="March 8, 2026"
-                  author="PE Teacher"
-                  title="Our Little Champions Shine at Inter-House Sports"
-                  image="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&q=80"
-                />
-                <NewsCard
-                  category="Creative Arts"
-                  date="March 3, 2026"
-                  author="Art Department"
-                  title="Young Artists Showcase Their Beautiful Creations"
-                  image="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80"
-                />
-              </div>
+                  {/* 2. Show the rest in the grid */}
+                  <div className="grid gap-8 md:grid-cols-2">
+                    {filteredNews
+                      .filter((n) => !n.featured)
+                      .map((item) => (
+                        <NewsCard key={item.id} {...item} />
+                      ))}
+                  </div>
+                </>
+              ) : (
+                <div className="flex h-64 flex-col items-center justify-center rounded-[2.5rem] border-2 border-dashed border-gray-200 text-gray-400">
+                  <p className="text-lg font-bold">No recent updates found.</p>
+                </div>
+              )}
             </div>
 
             {/* Sidebar */}
             <aside className="space-y-10">
-              {/* Trending */}
+              {/* Trending Updates */}
               <div className="rounded-[2.5rem] border border-gray-100 bg-white p-8 shadow-sm">
                 <div className="mb-6 flex items-center gap-2 text-lg font-black">
                   <TrendingUp size={24} className="text-[#ec4899]" />

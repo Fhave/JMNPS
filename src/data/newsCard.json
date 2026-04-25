@@ -1,0 +1,75 @@
+[
+  {
+    "id": 1,
+    "category": "School Events",
+    "date": "March 12, 2026",
+    "author": "School Admin",
+    "title": "Annual Cultural Day Celebration Brings Color and Joy to Campus",
+    "image": "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80",
+    "featured": true
+  },
+  {
+    "id": 2,
+    "category": "Sports Day",
+    "date": "March 8, 2026",
+    "author": "PE Teacher",
+    "title": "Our Little Champions Shine at Inter-House Sports",
+    "image": "https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&q=80"
+  },
+  {
+    "id": 3,
+    "category": "Creative Arts",
+    "date": "March 3, 2026",
+    "author": "Art Department",
+    "title": "Young Artists Showcase Their Beautiful Creations",
+    "image": "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80"
+  },
+  {
+    "id": 4,
+    "category": "Class Activities",
+    "date": "April 15, 2026",
+    "author": "Primary 4 Lead",
+    "title": "Science Fair: Exploring the Wonders of Sustainable Energy",
+    "image": "https://images.unsplash.com/photo-1530210124550-912dc1381cb8?auto=format&fit=crop&q=80"
+  },
+  {
+    "id": 5,
+    "category": "Parent Updates",
+    "date": "April 20, 2026",
+    "author": "Head Teacher",
+    "title": "Digital Safety Workshop: Protecting Our Children Online",
+    "image": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80"
+  },
+  {
+    "id": 6,
+    "category": "School Events",
+    "date": "May 5, 2026",
+    "author": "Music Director",
+    "title": "Spring Symphony: A Night of Melodies and Young Talent",
+    "image": "https://images.unsplash.com/photo-1514306191717-452ec28c7814?auto=format&fit=crop&q=80"
+  },
+  {
+    "id": 7,
+    "category": "Sports Day",
+    "date": "May 18, 2026",
+    "author": "Coach Samuel",
+    "title": "Soccer Finals: Blue House Takes the Golden Trophy",
+    "image": "https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&q=80"
+  },
+  {
+    "id": 8,
+    "category": "Class Activities",
+    "date": "June 2, 2026",
+    "author": "Librarian",
+    "title": "Book Week 2026: Traveling Through Time with Stories",
+    "image": "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&q=80"
+  },
+  {
+    "id": 9,
+    "category": "Parent Updates",
+    "date": "June 10, 2026",
+    "author": "Bursar Office",
+    "title": "New School Bus Routes and Transport Updates for Term 3",
+    "image": "https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?auto=format&fit=crop&q=80"
+  }
+]
