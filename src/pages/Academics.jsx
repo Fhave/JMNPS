@@ -14,6 +14,11 @@ import {
   Puzzle,
   ShieldCheck,
   Users,
+  Gamepad2,
+  Laptop,
+  Code,
+  Mic,
+  Trophy,
 } from "lucide-react";
 import { DepartmentCard } from "../components/DepartmentCard";
 import departmentsData from "../data/departmentCard.json";
@@ -25,6 +30,11 @@ const iconMap = {
   Music,
   Globe,
   Languages,
+  Gamepad2,
+  Laptop,
+  Code,
+  Mic,
+  Trophy,
 };
 
 export default function Academics() {

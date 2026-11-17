@@ -1,0 +1,8 @@
+{
+  "name": "JonMay Nursery and Primary Schools",
+  "short_name": "JonMay Schools",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#7c3aed"
+}

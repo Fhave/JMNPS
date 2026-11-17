@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronRight } from "lucide-react";
+import { Menu, X, ChevronRight, MousePointerClick } from "lucide-react";
 import Logo from "../assets/logo.png";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolling, setIsScrolling] = useState(false);
   const location = useLocation();
 
   const activePage =
@@ -14,7 +15,7 @@ export const Navbar = () => {
     { name: "Home", id: "home", path: "/" },
     { name: "About", id: "about", path: "/about" },
     { name: "Academics", id: "academics", path: "/academics" },
-    { name: "News", id: "news", path: "/news" },
+    // { name: "News", id: "news", path: "/news" },
     { name: "Contact", id: "contact", path: "/contact" },
   ];
 
@@ -24,6 +25,23 @@ export const Navbar = () => {
       behavior: "smooth",
     });
   }, [location.pathname]);
+
+  useEffect(() => {
+    let scrollTimer;
+
+    const handleScroll = () => {
+      setIsScrolling(true);
+      window.clearTimeout(scrollTimer);
+      scrollTimer = window.setTimeout(() => setIsScrolling(false), 150);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.clearTimeout(scrollTimer);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     const handleEsc = (e) => {
@@ -47,14 +65,30 @@ export const Navbar = () => {
       <nav className="sticky top-0 z-50 flex items-center justify-between bg-[#7c3aed] px-4 py-4 text-white shadow-lg md:px-8 lg:px-12 xl:px-16">
         <div className="flex items-center gap-4">
           {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(true)}
-            aria-label="Open menu"
-            aria-expanded={isOpen}
-            className="cursor-pointer rounded-lg p-1 transition-colors hover:bg-white/10 lg:hidden"
+          <div
+            className={`relative transition-opacity duration-150 lg:hidden ${
+              isScrolling ? "pointer-events-none opacity-0" : "opacity-100"
+            }`}
           >
-            <Menu size={28} />
-          </button>
+            <button
+              onClick={() => setIsOpen(true)}
+              aria-label="Open menu"
+              aria-expanded={isOpen}
+              className="cursor-pointer rounded-full border-2 border-[#facc15] p-1.5 transition-colors hover:bg-white/10"
+            >
+              <Menu size={28} />
+            </button>
+            {!isOpen && (
+              <button
+                type="button"
+                aria-label="Open menu to see more"
+                className="absolute top-full left-0 z-10 mt-1 flex w-max cursor-pointer items-center gap-1 rounded-full bg-[#facc15] px-2 py-1 text-[11px] font-bold whitespace-nowrap text-[#4c1d95] shadow-lg"
+              >
+                <MousePointerClick size={14} />
+                Click here to see more
+              </button>
+            )}
+          </div>
 
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
@@ -101,13 +135,22 @@ export const Navbar = () => {
         <div className="p-6">
           <div className="mb-10 flex items-center justify-between">
             <img src={Logo} alt="Logo" className="h-16 w-auto object-contain" />
-            <button
-              onClick={() => setIsOpen(false)}
-              aria-label="Close menu"
-              className="cursor-pointer rounded-xl bg-gray-100 p-2 hover:bg-gray-200"
-            >
-              <X size={24} />
-            </button>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                aria-label="Close menu"
+                className="flex items-center justify-center gap-1 rounded-xl bg-gray-100 px-3 py-2 text-center text-xs font-bold whitespace-nowrap text-gray-700 hover:bg-gray-200"
+              >
+                Click to close <ChevronRight size={12} />
+              </button>
+              <button
+                onClick={() => setIsOpen(false)}
+                aria-label="Close menu"
+                className="cursor-pointer rounded-full border-2 border-[#7c3aed] p-2 text-[#7c3aed] transition-colors hover:bg-[#f3e8ff]"
+              >
+                <X size={24} />
+              </button>
+            </div>
           </div>
 
           <nav className="space-y-2">

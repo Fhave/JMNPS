@@ -10,6 +10,12 @@ import {
 import { ValueCard } from "../components/ValueCard";
 import { TimelineItem } from "../components/TimelineItem";
 import timelineData from "../data/timelineItem.json";
+import about from "../assets/images/about.jpeg";
+import teacher1 from "../assets/images/teacher(1).jpeg";
+import teacher2 from "../assets/images/teacher(2).jpeg";
+import teacher3 from "../assets/images/teacher(3).jpeg";
+import teacher4 from "../assets/images/teacher(4).jpeg";
+import teacher5 from "../assets/images/teacher(5).jpeg";
 
 export default function About() {
   return (
@@ -31,7 +37,7 @@ export default function About() {
       <section className="mx-auto grid max-w-7xl items-center gap-20 px-6 py-24 lg:grid-cols-2">
         <div className="overflow-hidden rounded-[3rem] shadow-2xl">
           <img
-            src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&q=80"
+            src={about}
             alt="Happy students"
             className="h-150 w-full object-cover"
           />
@@ -113,24 +119,29 @@ export default function About() {
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {[
             {
-              name: "Mrs. Grace Adams",
-              role: "Head Teacher",
-              img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80",
+              name: "Mrs. Samuel",
+              role: "Head Teacher / Grade 5 Primrose Teacher",
+              img: teacher1,
             },
             {
-              name: "Mr. Daniel Scott",
-              role: "Primary Coordinator",
-              img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80",
+              name: "Miss Mayowa",
+              role: "Grade 4 Jasmine Teacher",
+              img: teacher2,
             },
             {
-              name: "Ms. Linda Brown",
-              role: "Early Years Lead",
-              img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80",
+              name: "Mrs. Chibueze",
+              role: "Grade 3 Marigold Teacher",
+              img: teacher3,
             },
             {
-              name: "Mr. James Lee",
-              role: "Activities Director",
-              img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80",
+              name: "Mrs. Aiyedun",
+              role: "Grade 2 Hyacinth Teacher",
+              img: teacher4,
+            },
+            {
+              name: "Mrs. Ogidi",
+              role: "Grade 1 Daisy Teacher",
+              img: teacher5,
             },
           ].map((leader, i) => (
             <div key={i} className="group cursor-pointer">
