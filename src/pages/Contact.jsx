@@ -133,7 +133,6 @@ export default function Contact() {
                       className="w-full appearance-none rounded-2xl border-2 border-transparent bg-gray-50 p-5 transition-all outline-none focus:border-[#7c3aed] focus:bg-white"
                     >
                       <option>Admission Information</option>
-                      <option>Schedule a School Tour</option>
                       <option>Academic Questions</option>
                       <option>General Inquiry</option>
                     </select>
@@ -187,20 +186,21 @@ export default function Contact() {
               <ContactCard
                 icon={Phone}
                 title="Call Our Office"
-                detail="+234 800 123 4567"
-                sub="Monday - Friday | 8:00am - 4:00pm"
+                detail="+234 803 303 9284, +234 803 302 2278"
+                sub="Monday - Friday | 9:00am - 4:00pm"
               />
               <ContactCard
                 icon={Mail}
                 title="Email Us"
-                detail="info@littlestarschool.com"
+                detail="jonmayschools@gmail.com"
                 sub="We respond within 24 hours"
               />
               <ContactCard
                 icon={MapPin}
-                title="Visit Our Campus"
-                detail="12 Sunshine Avenue, Lagos"
-                sub="Book a guided school tour"
+                title="Our Location on Google Maps"
+                detail="2, Lateef Musa Street, Off LASU road, Opposite Winners' Chapel,
+                Near Akesan Bus-Stop, Akesan, Lagos"
+                sub="Our Location on Google Maps"
               />
 
               <div className="relative overflow-hidden rounded-[2.5rem] bg-[#ec4899] p-10 text-white">
@@ -209,13 +209,28 @@ export default function Contact() {
                     Follow Our School Life
                   </h3>
                   <div className="flex gap-4">
-                    {[Facebook, Instagram].map((Icon, i) => (
-                      <button
-                        key={i}
+                    {[
+                      {
+                        icon: <Facebook size={24} />,
+                        label: "Facebook",
+                        href: "https://www.facebook.com/jonmayschools",
+                      },
+                      {
+                        icon: <Instagram size={24} />,
+                        label: "Instagram",
+                        href: "https://www.instagram.com/jonmayschools/",
+                      },
+                    ].map(({ icon, label, href }) => (
+                      <a
+                        key={label}
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Visit JonMay Schools on ${label}`}
                         className="rounded-2xl bg-white/20 p-4 transition-all hover:bg-white hover:text-[#ec4899]"
                       >
-                        <Icon size={24} />
-                      </button>
+                        {icon}
+                      </a>
                     ))}
                   </div>
                 </div>

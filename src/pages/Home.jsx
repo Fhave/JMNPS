@@ -12,7 +12,7 @@ import {
   Download,
   Target,
 } from "lucide-react";
-import children from "../assets/images/children.jpg";
+import children from "../assets/images/hero.jpeg";
 import infoCardData from "../data/infoCard.json";
 import eventItemData from "../data/eventItem.json";
 
@@ -143,7 +143,7 @@ export default function Home() {
               </h2>
               <div className="h-2 w-24 rounded-full bg-[#ec4899]"></div>
             </div>
-            <button
+            {/* <button
               className="group flex items-center gap-3 rounded-2xl bg-white px-8 py-4 font-black shadow-sm transition-all hover:shadow-md"
               onClick={() => {
                 navigate("/news");
@@ -155,7 +155,7 @@ export default function Home() {
                 size={20}
                 className="transition-transform group-hover:translate-x-2"
               />
-            </button>
+            </button> */}
           </div>
 
           <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">

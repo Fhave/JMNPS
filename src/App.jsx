@@ -6,6 +6,8 @@ import About from "./pages/About";
 import Academics from "./pages/Academics";
 import News from "./pages/News";
 import Contact from "./pages/Contact";
+import DataProtection from "./pages/DataProtection";
+import TermsOfService from "./pages/TermsOfService";
 import { useState } from "react";
 
 function App() {
@@ -18,8 +20,10 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/academics" element={<Academics />} />
-        <Route path="/news" element={<News />} />
+        {/* <Route path="/news" element={<News />} /> */}
         <Route path="/contact" element={<Contact />} />
+        <Route path="/privacy-policy" element={<DataProtection />} />
+        <Route path="/terms-of-service" element={<TermsOfService />} />
       </Routes>
       <Footer />
     </Router>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Alert from "./Alert";
 import { Facebook, Instagram, Mail, Send, MapPin, Phone } from "lucide-react";
 
@@ -74,8 +75,16 @@ export const Footer = () => {
 
           <div className="flex gap-4">
             {[
-              { icon: <Facebook size={20} />, label: "Facebook", href: "#" },
-              { icon: <Instagram size={20} />, label: "Instagram", href: "#" },
+              {
+                icon: <Facebook size={20} />,
+                label: "Facebook",
+                href: "https://www.facebook.com/jonmayschools",
+              },
+              {
+                icon: <Instagram size={20} />,
+                label: "Instagram",
+                href: "https://www.instagram.com/jonmayschools/",
+              },
               {
                 icon: <Mail size={20} />,
                 label: "Email",
@@ -85,6 +94,14 @@ export const Footer = () => {
               <a
                 key={i}
                 href={social.href}
+                target={
+                  social.href.startsWith("https://") ? "_blank" : undefined
+                }
+                rel={
+                  social.href.startsWith("https://")
+                    ? "noopener noreferrer"
+                    : undefined
+                }
                 aria-label={social.label}
                 className="rounded-xl bg-white/5 p-3 text-gray-400 transition-all hover:scale-110 hover:bg-[#7c3aed] hover:text-white"
               >
@@ -169,12 +186,18 @@ export const Footer = () => {
       <div className="mx-auto mt-10 flex max-w-7xl flex-col items-center justify-between gap-4 text-[10px] font-bold tracking-[0.2em] text-gray-500 uppercase md:flex-row">
         <p>© 2026 JonMay Nursery and Primary Schools</p>
         <div className="flex gap-8">
-          <span className="cursor-pointer transition-colors hover:text-white">
+          <Link
+            to="/privacy-policy"
+            className="transition-colors hover:text-white"
+          >
             Privacy Policy
-          </span>
-          <span className="cursor-pointer transition-colors hover:text-white">
+          </Link>
+          <Link
+            to="/terms-of-service"
+            className="transition-colors hover:text-white"
+          >
             Terms of Service
-          </span>
+          </Link>
         </div>
       </div>
     </footer>
