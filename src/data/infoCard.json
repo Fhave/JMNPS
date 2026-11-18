@@ -4,20 +4,20 @@
     "title": "Independence Day",
     "date": "2026-09-30",
     "description": "Celebrating our national heritage with cultural displays, songs, and festive colors.",
-    "image": "src/assets/images/independence.png"
+    "image": "independence.png"
   },
   {
     "category": "Programs",
     "title": "Girl Child Day",
     "date": "2026-10-09",
     "description": "Empowering our young girls and celebrating their potential with inspiring stories and activities.",
-    "image": "src/assets/images/girl-child.png"
+    "image": "girl-child.png"
   },
   {
     "category": "Programs",
     "title": "Teachers' Day",
     "date": "2026-10-05",
     "description": "Honoring our wonderful teachers with handmade cards, appreciation notes, and joyful performances.",
-    "image": "src/assets/images/teachers-day.png"
+    "image": "teachers-day.png"
   }
 ]

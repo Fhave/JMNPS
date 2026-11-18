@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import { DepartmentCard } from "../components/DepartmentCard";
 import departmentsData from "../data/departmentCard.json";
+import { getImageUrl } from "../utils/imageAssets";
 
 const iconMap = {
   BookOpen,
@@ -66,7 +67,7 @@ export default function Academics() {
                 icon={iconMap[dept.iconName]}
                 color={dept.color}
                 subjects={dept.subjects}
-                image={dept.image}
+                image={getImageUrl(dept.image)}
               />
             ))}
           </div>

@@ -15,6 +15,7 @@ import {
 import children from "../assets/images/hero.jpeg";
 import infoCardData from "../data/infoCard.json";
 import eventItemData from "../data/eventItem.json";
+import { getImageUrl } from "../utils/imageAssets";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -169,7 +170,7 @@ export default function Home() {
                   category={item.category}
                   title={item.title}
                   description={item.description}
-                  image={item.image}
+                  image={getImageUrl(item.image)}
                   path={item.path}
                 />
               ))}
