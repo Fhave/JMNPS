@@ -32,7 +32,7 @@ export const Navbar = () => {
     const handleScroll = () => {
       setIsScrolling(true);
       window.clearTimeout(scrollTimer);
-      scrollTimer = window.setTimeout(() => setIsScrolling(false), 150);
+      scrollTimer = window.setTimeout(() => setIsScrolling(false), 1000);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
